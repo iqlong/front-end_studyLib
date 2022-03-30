@@ -1,0 +1,9 @@
+{
+  "name": "itheima_tools",
+  "version": "1.0.0",
+  "description": "提供了时间格式化,HTML Escape的功能",
+  "main": "index.js",
+  "keywords": ["itheima","dateFormat","escape","时间格式化","格式化"],
+  "author": "克隆人张慧龙",
+  "license": "ISC"
+}
