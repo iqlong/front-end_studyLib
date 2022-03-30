@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写简单的防抖函数</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入值">
+    <script>
+        let id;
+        document.querySelector('input').oninput = 
+
+        function cslValue() {
+            // 删除上一次的计时器
+            if(id) {
+                    // console.log('开始的id是',id);
+                    clearTimeout(id);
+                }
+
+            id = setTimeout(() => {
+                // console.log('清除的id是',id);
+                console.log(this.value);
+            },1000);
+                
+        }
+    </script>
+</body>
+</html>

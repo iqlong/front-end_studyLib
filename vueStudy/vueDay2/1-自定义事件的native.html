@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义事件， 组件的v-model， 组件的原生事件绑定， .sync</title>
+    <script src="./js/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{inputV}}
+        <my-comp :inputv.sync="inputV" >
+            <template v-slot:good='user'>
+                <div>
+                    {{user.user.name}}
+                    {{user.user.age}}
+                    fdfd
+                </div>
+               
+            </template>
+        </my-comp>
+    </div>
+    <script>
+        // v-model在组件中的使用过程：
+            /*
+                1. v-model在input中的使用就是一个语法糖
+                2. 组件中的v-model默认可以使用value和@input事件，再用inheritVal=false + :='$attrs'...
+                3. model配置input.type = 'selete'
+                 tip： inheritVal=false   
+            */
+
+        // 原生事件绑定到组件： .native  $listeners 
+        // .sync   =  props+ $emit   父子组件有明显变更来源的prop双向绑定
+
+        const comp = {
+            props: ['inputv'],
+            data() {
+                return {
+                    user: {name: 'g',age: 12}
+                }
+            },                                                                                  
+            template: `
+                <div>
+                    <div>{{inputv}}</div>
+                    <input :value='inputv' @input="$emit('update:inputv',$event.target.value)"></input>
+                    <slot name='good' :user="user">fdfd</slot>
+                </div>
+                
+            `,
+            methods: {
+                testFunc() {
+                    this.$emit('updata:inputv',$event.target.value)
+                }
+            },
+
+        }
+        const vm = new Vue({
+            el: '#app',
+            components: {
+                myComp: comp,
+            },
+            data: {
+                text: '',
+                inputV: '你好组件',
+
+            },
+            methods: {
+                al() {
+                    console.log(this,'f');
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

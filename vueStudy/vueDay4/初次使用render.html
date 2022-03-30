@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue模板</title>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            hNumber: 3,
+        },
+        template: `
+          <div>你好啊</div>
+        `,
+        methods: {
+
+        },
+        // 如果是组件的话，会将组件放入 容器#app中
+        // 但是render函数类似于template，会覆盖上面的template并且覆盖掉 #app容器
+        render(createElement) {
+            return createElement(`h${this.hNumber}`,{
+                attrs: {
+                    name: 'zhl',
+                    gg: 'g',
+                    class: 'jk'
+                },
+                domProps: {
+                    id: 'jj',
+                    class: 'jk'
+                }
+            },['你好鸭!', createElement('h3', '我是第二个元素')])
+        }
+    });
+
+</script>
+</body>
+</html>

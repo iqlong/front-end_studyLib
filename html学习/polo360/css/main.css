@@ -1,0 +1,273 @@
+/* 首先清除浏览器的默认样式 */
+* {
+  margin: 0;
+  padding: 0;
+  /* 没有设置行高导致li的高度不一致 */
+  line-height: 1;
+}
+body {
+  /* background: repeat-x linear-gradient(#DBDCDD,#FEFEFE); */
+  /* background-size: 100% 32px; */
+  background: url(../img/bd-bg.png) repeat-x;
+}
+.header {
+  width: 940px;
+  height: 78px;
+  padding: 37px 0 46px;
+  margin: 0 auto;
+}
+/* 由于这的有无滚动条导致位置的变化 */
+.poloLogo {
+  background: url(../img/logo.png) no-repeat;
+  display: block;
+  margin-left: 15px;
+  width: 287px;
+  height: 76px;
+  float: left;
+}
+/* 不要定死宽高，要子元素将它撑开，方便以后的扩展 */
+.navList {
+  margin-top: 22px;
+  float: right;
+  list-style: none;
+}
+.navList > li {
+  float: left;
+  padding: 0 10px 8px;
+  border-left: 1px dotted #d6d6d6;
+}
+.navList > li>a {
+  text-decoration: none;
+  color: #666;
+  /* 非特字体不用加引号？ */
+  font: bold 14px Georgia;
+}
+.navList > li>a:hover {
+  color: #a1a1a1;
+  text-decoration: underline;
+}
+.navList > li>div {
+  color: #b7b7b7;
+  font: 11px tahoma;
+}
+/* 清除浮动，让header有高度 */
+.navList::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+/* 清除浮动，让ul有高度 */
+/* .navList>li::after {
+  content: '';
+  display: block;
+  clear: both;
+} */
+
+.slidePicture {
+  width: 940px;
+  height: 356px;
+  margin: 0 auto;
+  background: url(../img/banner-bg.png) no-repeat bottom center;
+  position: relative;
+}
+.slidePicture>.pointers {
+  position: absolute;
+  left: 15px;
+  bottom: 25px;
+}
+.slidePicture a {
+  display: block;
+  float: left;
+  width: 17px;
+  height: 17px;
+  margin-left: 4px;
+  background-image: url(../img/pointer.png);
+}
+.slidePicture a:nth-of-type(2) {
+  background-image: url(../img/pointer-active.png);
+}
+.slidePicture a:visited,.slidePicture a:hover {
+  background-image: url(../img/pointer-active.png);
+}
+
+/* 先设置滚动条，方便width的布局和计算 */
+.content {
+  width: 940px;
+  margin: 0 auto;
+}
+.content h1 {
+  text-align: center;
+  height: 27px;
+  padding: 6px 0 20px;
+  font: bold 24px Georgia;
+  margin-bottom: 38px;
+  background: url(../img/line.png) no-repeat bottom center;
+}
+
+.box {
+  width: 300px;
+  /* height: 433px; */
+  float: left;
+}
+.box:nth-of-type(2) {
+  margin: 0 20px;
+}
+.content .box .title {
+  color: #11719e;
+    font: 21px Georgia;
+}
+
+.content .box .text {
+  color: #8c8c8c;
+    font: 12px Helvetica;
+}
+.content .box>div:first-of-type {
+  width: 299px;
+  height: 190px;
+  padding: 12px 0 0;
+  margin: 16px 0 10px;
+  background: url(../img/img-bg.png);
+}
+.content .box>div img {
+  margin: 0 auto;
+  display: block;
+}
+.content .box .textarea {
+  /* ******************** */
+  height: 93px;
+  color: #3e3e3e;
+  font: 13px Helvetica;
+  word-spacing: 2px;
+}
+.content .box .learMore {
+  display: block;
+  width: 163px;
+  height: 32px;
+  color: #016999;
+  font: 12px/32px Helvetica;
+  text-indent: 1em;
+  margin-bottom: 35px
+;
+  background: url(../img/sprite.png) 0 -73px
+}
+.content .box .learMore:hover {
+  background: url(../img/sprite.png) 0 -27px
+}
+.content::after,.footer::after {
+  content: '';
+  display: block; 
+  clear: both;
+}
+
+/* footer开始了 */
+.footer {
+  width: 940px;
+  margin: 0 auto;
+  background: url(../img/line.png) no-repeat top center;
+}
+.footer .box .title {
+  color: #444;
+  font: 18px/1 georgia;
+  border-bottom: 1px dashed #d3d3d3;
+  padding: 44px 0px 10px;
+  margin-bottom: 15px;
+}
+.footer .box a{
+  display: inline-block;
+}
+.footer p {
+  color: #444;
+  font: 12px/1 Helvetica;
+}
+.footer .box .pictures {
+  margin-top: 4px;
+
+}
+/* .footer .box .n1 {
+  font: bold 18px/1 "gill sans mt";
+  padding: 34px 0px 10px;
+  color: #444;
+  border-bottom: 1px dashed #d3d3d3;
+  margin-bottom: 15px;
+} */
+.footer .box form input {
+  margin-top: 14px;
+  height: 32px;
+  width: 100%;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 4px;
+}
+.footer .box form textarea {
+  display: block;
+  width: 278px;
+  height: 122px;
+  padding: 10px;
+  border: 1px solid rgb(196, 196, 196);
+  margin-top: 8px;
+  border-radius: 4px;
+}
+.footer .box button {
+  margin: 8px 0 23px;
+  border: 0;
+  text-align: left;
+}
+.footer .box button a {
+  display: block;
+  width: 163px;
+  height: 32px;
+  color: white;
+  font: 13px/32px Georgia;
+  text-indent: 1em;
+  background: url(../img/sprite.png) 0 -27px;
+}
+input {
+  box-sizing: border-box;
+}
+.footer .lastBox div.contentDiv {
+  color: #444;
+  font: 12px/1 helvetica;
+  height: 58px;
+  border-bottom: 1px dashed #d3d3d3;
+  margin-bottom: 14px;
+  padding-bottom: 9px;
+}
+.footer .lastBox div.contentDiv:last-of-type {
+  margin-bottom: 0;
+}
+.footer .lastBox div.contentDiv img {
+  margin-right: 8px;
+  float: left;
+}
+/* .footer .lastBox div.contentDiv div {
+  vertical-align: text-bottom;
+  display: inline-block;
+} */
+
+.copyRight {
+  height: 173px;
+  background: #333;
+  border-top: 10px solid #4c4c4c;
+}
+
+.copyRight .content {
+  width: 940px;
+  margin-top: 18px;
+}
+.copyRight .content p {
+  margin-bottom: 6px;
+  color: #999;
+}
+.copyRight .content a {
+  color: #999;
+  font: 11px Helvetica;
+  text-decoration: none;
+}
+.copyRight .content a:hover {
+  color: #cccaca;
+  text-decoration: underline;
+}
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}

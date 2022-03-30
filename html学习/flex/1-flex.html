@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex的学习</title>
+    <style>
+        .outer {
+            position: relative;
+        }
+        .wrap {
+            position: absolute;
+            left: 50%;  
+            top: 50%;
+            /* margin-left: -75px;
+            margin-right: -75px; */
+            transform: translate(-75px,-75px);
+            width: 150px;
+            height: 100px;
+            display: flex;
+            border: 1px solid;
+            flex-direction: row-reverse;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            align-items: flex-end;
+            /* align-self: ; */
+            align-content: center ;
+        }
+        .inner {
+            width: 20px;
+            height: 20px;
+            background: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="outer"> -->
+        <div class="wrap">
+            <!-- 
+                ** 关于侧轴上的那个优先级高
+                ** 关于主轴和侧轴上是否取反的问题
+             -->
+            <div class="inner">1</div>
+            <div class="inner">2</div>
+            <div class="inner">3</div>
+            <div class="inner">4</div>
+        </div>
+    <!-- </div> -->
+    <script>
+        let func = function(a,b) {
+            console.log(1,2)
+        };
+        let dom = document.querySelector('.inner');
+        dom.onclick = func;
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件间传值</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <son>
+            <son2></son2>
+        </son>
+    </div>
+    <script>
+        let grandSon = {
+            data() {
+                return {
+                    son2: this.$parent.son,
+                }
+            },
+            template: `
+                <div>{{transmitData}}</div>
+            `,
+            inject: ['transmitData']
+        };
+
+        let son = {
+            data() {
+                return {
+                    son: this.$parent.father
+                }
+            },
+            template: `
+                <div>
+                    <slot></slot>
+                </div>
+
+            `,
+            components: {
+
+            }
+
+        };
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                father: '我是父亲的数据',
+            },
+            methods: {
+
+            },
+            components: {
+                son: son,
+                son2: grandSon
+            },
+            provide() {
+                return {
+                    transmitData: '我传给你一个值',
+                }
+            }
+
+        })
+    </script>
+
+</body>
+</html>

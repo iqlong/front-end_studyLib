@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好动的兔斯基</title>
+    <style>
+        /* 目标：将兔斯基放在一个居中的相框中 - 3D
+          理解 steps  和动画的不同方式 */
+
+        /* 每日必备：清除浏览器的默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 没事干的去除滚动条 */
+        body,html {
+         overflow: hidden;   
+        }
+        /* 一个3d的相框 -- 外面就不再包裹了，使用不好用的perspective */
+        .wrap {
+            padding: 35px;
+            /* 不确定宽高的自己居中 */
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /* 让子元素居中 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 30px;
+            transform-style: preserve-3d;
+
+        }
+        @keyframes activeRabbit {
+            form {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -576px 0;
+            }
+        }
+        /* 兔斯基的width: 48px height: 48px */
+        .rabbit {
+            width: 48px;
+            height: 48px;
+            background: url(./animation.png);
+            animation-name: activeRabbit;
+            animation-duration: 0.8s;
+            /* animation-delay:  1s; */
+            animation-timing-function: steps(12,start);
+
+            animation-iteration-count: infinite;
+            /* animation-direction: ; */
+
+            animation-fill-mode: both;
+            animation-play-state: running;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="rabbit"></div>
+    </div>
+</body>
+</html>

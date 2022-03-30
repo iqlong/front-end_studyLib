@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js断点调试</title>
+    <style>
+        li:nth-child(1) {
+            color: red;
+        }
+        li:first-child {
+            --col: red;
+            /* background-color: red; */
+            background-color: --col;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>nihao</li>
+        <li>还好啊</li>
+        <li>还好啊</li>
+        <li>还好啊</li>
+        <li>还好啊</li>
+        <li>还好啊</li>
+        <li>还好啊</li>
+    </ul>
+    <div></div>
+    <div style="float: left;background-color: rosybrown;"></div>
+    <div style="background-color: royalblue;margin-left: 20px;"></div>
+    <br>
+    <div style="position: relative;top:30px;background-color: rosybrown;"></div>
+    <div style="background-color: royalblue;margin-left: 20px;"></div>
+</body>
+<script>
+    // let x = 1;
+    // for(let i=0;i<10;i++) {
+    //     let y = x++;
+    //     console.log(y);
+    // }
+    // var convert = function(s, numRows) {
+    //     if(numRows == 1)
+    //         return s;
+
+    //     const len = Math.min(s.length, numRows);
+    //     const rows = [];
+    //     for(let i = 0; i< len; i++) rows[i] = "";
+    //     let loc = 0;
+    //     let down = false;
+
+    //     for(const c of s) {
+    //         rows[loc] += c;
+    //         if(loc == 0 || loc == numRows - 1)
+    //             down = !down;
+    //         loc += down ? 1 : -1;
+    //     }
+
+    //     let ans = "";
+    //     for(const row of rows) {
+    //         ans += row;
+    //     }
+    //     return ans;
+    // };
+    // convert('hihaozhangh',4)
+
+
+    var convert = function(s, numRows) {
+    const strLen = s.length;
+    if(numRows==1 || strLen<=numRows) {
+        return s;
+    }
+    let resultArray = [];
+    for(let i=0;i<numRows;i++) {
+        resultArray[i] = "";
+    }
+    let goWhere = false;
+    let index =0;
+    for(const str of s) {
+        resultArray[index]+=str;
+        //如果goWhere是true那么就是index-1(向右)--不然就是index+1(向下)
+            //且index<
+        if(index<numRows-1 && goWhere==false) {
+            index++;
+        }else {
+            index--;
+        }
+        if(index==0||index==numRows-1) {
+            goWhere=!goWhere;
+        }
+    }
+    return resultArray;
+ };
+ console.log(convert('nihaoshijie',3));
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>domTest</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let appMenu= [
+        {
+            name: '变量衍生监控',
+            id: '1',
+            icon:'el-icon-menu',
+            children: [
+                {
+                    name: '大屏首页',
+                    id: '1-1',
+                    icon:'el-icon-wind-power',
+                },{
+                    name: '变量衍生监控',
+                    id: '1-2',
+                    icon:'el-icon-wind-power',
+                }
+            ]
+        },{
+            name: '决策引擎决策结果监控',
+            id: '2',
+            icon:'el-icon-menu',
+        }
+    ];
+    // ...位置不同导致找到的dom - innerText还要函数操作
+    let operatedMenu = appMenu;
+    
+    let result;
+    for(let app of operatedMenu) {
+        result = (function deGui() {
+            // 改成try catch试一下
+            if(app.name === appName) {
+                return app;
+            }else if(app.children) {
+                let child = app.children;
+                if(child[child.length-1].name == appName) {
+                    return app;
+                }
+            }else {
+                if(app.children) {
+                    deGui(app.children);
+                }else {
+                    return false;
+                }
+            }
+        }) (app)
+        // 若找到了要复制的app，就跳出循环
+        if(result) {
+            break;
+        }
+    }
+    console.log(result)
+</script>
+</html>

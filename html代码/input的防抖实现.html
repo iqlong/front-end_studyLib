@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在input中使用防抖函数</title>
+</head>
+<body>
+    我可以防抖哦： <input type="text" placeholder="请尽情折磨我吧!">
+    <script>
+        let input = document.querySelector('input');
+        input.oninput = (function antiShake(){
+            let id=null;
+            return function () {
+                let that =this;
+                if (id) {
+                    clearTimeout(id);
+                }
+                id = setTimeout(() => {
+                    console.log(that.value);
+                }, 1500)
+            }
+        }) ()
+
+
+    </script>
+</body>
+</html>

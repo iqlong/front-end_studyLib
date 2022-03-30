@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/mustache.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 基本用法：
+            Mustache.render(templateStr,data) 
+
+    -->
+    <!-- 不循环的使用 -->
+    <h2 id="container"></h2>
+    <script type="module">
+        //  使用4.2.0版本的需要引入
+        // import Mustache from '../js/mustache.js'
+        let templateStr = `我今天买了一个{{phone}}手机，我好{{mood}}!`;
+        const data={
+            phone: ' ·iphone13-远峰蓝· ',
+            mood: '开心'
+        };
+        let innerMus = Mustache.render(templateStr,data);
+        document.getElementById('container').innerHTML = innerMus;
+        // 简单数组和对象数组
+            // 同: 都是{{#arr}}开始,{{/arr}}结束
+            // 异: 数组中直接{{.}}表示项本身   对象数组中使用{{xxx}}表示每一项
+               // * 其中使用arr若是数组就会遍历,若是boolean: 就会根据值选择是否执行  
+                    //  *** 但是{{}}中写表达式无反应,弱逻辑   
+    </script>
+</body>
+</html>

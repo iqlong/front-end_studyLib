@@ -1,0 +1,16 @@
+{
+  "name": "writeself_mustachejs",
+  "version": "0.0.0",
+  "description": "尝试手写mustache",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
+  "author": "张慧龙",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

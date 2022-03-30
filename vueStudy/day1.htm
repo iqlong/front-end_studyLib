@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一天的Vue学习</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        div {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <!-- //关于事件流在js原生和Vue绑定中   是否有区别 -->
+    <div id="app" style="width: 400px; height: 400px;">
+        <HeLlo style="width: 200px; height: 200px;"  @hel-d = 'innerCSL'>ff</hello>
+    </div>
+    <script>
+        Vue.component('hello',{
+            template: `<div @click="$emit('hel-d')">gg</div>`
+        })
+        let x = {
+
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                outerCSL() {
+                    alert('outer');
+                },
+                innerCSL() {
+                    alert('inner');
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

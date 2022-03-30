@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div v-bind="objPerson"></div>
+    {{objPerson}}
+    <blog-post name="你好" :inpV="iptValue" class="jj" @click.native="cLog($attrs)"></blog-post>
+</div>
+<script>
+    // props看完了，
+    // 开始学习自定义事件了：$emit('enlargeWorld', 0.1)： 第一个参数是事件名字，第二个参数是事件参数
+    // 在父级中可以使用enlargeWorld($event)来获取传入的参数
+    let comp = {
+        inheritAttrs: false,
+        props: ['post'],
+        template: `
+          <div>
+              <button @click="cLog($slots)">输出$attrs</button>
+              <span>jkj</span>
+          </div>
+
+        `,
+        methods: {
+            cLog(val) {
+                console.log(val)
+            }
+        }
+    };
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            fontSize: 14,
+            iptValue: '张慧龙',
+            objPerson: {
+                name: 'zhl',
+                age: 12
+            }
+        },
+        methods: {
+            cLog(val) {
+                console.log(val)
+            }
+        },
+        components: {
+            'blog-post': comp,
+        }
+
+    })
+</script>
+</body>
+</html>

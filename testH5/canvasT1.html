@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid black"></canvas>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        ctx.font = "48px serif";
+        ctx.textAlign = "left";
+        ctx.textBaseline = 'top'
+        ctx.strokeText("Hello world", 0, 100);
+
+        ctx.moveTo(10,100)
+        ctx.lineTo(288,100);
+        ctx.stroke()
+    </script>
+</body>
+</html>

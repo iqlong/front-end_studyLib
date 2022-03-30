@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-html的原理</title>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{vValue}}
+        <br>
+        <input type="text" :value='vValue' @input = 'vValue = $event.target.value'>
+        <br>
+        {{compValue}}
+        <br>
+        <vm-comp v-model="compValue"></vm-comp>
+        <!-- <div is="vmComp" v-model="compValue"></div> -->
+        <br>
+        {{username}}
+        <br>
+        <base-input
+        label="Username:"
+        :value="username"
+        @input = "fun"
+        required
+        placeholder="Enter your username"
+        ></base-input>
+    </div>
+    <script>
+        let vmComp = {
+            data() {
+                return {
+
+                }
+            },
+            inheritAttrs: false,
+            template: `
+                    <input v-bind="$attrs"></input>`
+        }
+        Vue.component('base-input', {
+            inheritAttrs: false,
+            props: ['label', 'value'],
+            template: `
+                <label>
+                {{ label }}
+                <input
+                    v-bind="$attrs"
+                    v-bind:value="value"
+                    v-on:input="$emit('input', $event.target.value)"
+                >
+                </label>
+            `
+        })
+        const vm = new Vue({
+            el: '#app',
+            components: {
+                vmComp,
+            },
+            data: {
+                vValue: '张慧龙不要急，一切都值得！',
+                compValue: 'helle component',
+                username: '张慧龙'
+            },
+            
+            methods: {
+                fun(ev) {
+                    this.username = ev
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>

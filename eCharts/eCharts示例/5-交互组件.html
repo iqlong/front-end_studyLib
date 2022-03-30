@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>5-交互组件</title>
+  <!-- 引入 echarts.js -->
+  <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  let myChart = echarts.init(document.getElementById('main'));
+
+  // 指定图表的配置项和数据
+  let option = {
+    xAxis: {
+      type: 'value'
+    },
+    yAxis: {
+      type: 'value'
+    },
+    dataZoom: [
+      {   // 这个dataZoom组件，默认控制x轴。
+        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+        start: 10,      // 左边在 10% 的位置。
+        end: 60         // 右边在 60% 的位置。
+      }
+    ],
+    series: [
+      {
+        type: 'scatter', // 这是个『散点图』
+        itemStyle: {
+          opacity: 0.8
+        },
+        symbolSize: function (val) {
+          return val[2] * 40;
+        },
+        // 其中 data 的结构为： [[x1, y1, z1], [x2, y2, z2], ...]
+        // 其中 x 表示 x 轴，y 表示 y 轴，z 表示点的权重，z 越大，点在图中的显示也就越大。
+        data: [["14.616","7.241","0.896"],["3.958","5.701","0.955"],
+          ["2.768","8.971","0.669"],["9.051","9.710","0.171"],
+          ["14.046","4.182","0.536"],["12.295","1.429","0.962"],
+          ["4.417","8.167","0.113"],["0.492","4.771","0.785"],
+          ["7.632","2.605","0.645"],["14.242","5.042","0.368"]]
+      }
+    ]
+  }
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+</body>
+</html>

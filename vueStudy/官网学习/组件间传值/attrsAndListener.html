@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{jkK}}
+    <comp-b :mes-b = 'mesB' :mesc="mesC" @get-mesc="getMesC" @get-mesb="getMesB"></comp-b>
+  </div>
+  
+  <script>
+    
+    let compC = {
+      template: `
+        <input @input="emit($attrs.mesc)" v-model="$attrs.mesc"></input>
+      `,
+      data() {
+        return {
+          
+        }
+      },
+      methods: {
+        emit(val) {
+          this.$emit('get-mesc', val)
+        }
+      }
+    };
+    let compB = {
+      template: ` 
+       <div class="b">  
+          <input @input= "emit" v-model="mesBb"></input>
+          <comp-c v-bind = "$attrs" v-on="$listeners"> </comp-c>
+        </div>
+        
+      `,
+      data() {
+        return {
+          mesBb: this.mesB
+        }
+      },
+      methods: {
+        emit() {
+          this.$emit('get-mesb', this.mesBb);
+        }
+      },
+      props: [
+        'mesB'
+      ],
+      components: {
+        compC
+      }
+    };
+
+    // 实现的目标，vm可以传值给B和C，B和C也可以发送事件给A
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        mesB: "b's data",
+        mesC: "c's data",
+        jkK: 'jk'
+      },
+      components: {
+        compB,
+      },
+      methods: {
+        getMesC(val) {
+          console.log('收到了c传递的数字',val);
+        },
+        getMesB(val) {
+          console.log('收到了b传递的数据',val);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

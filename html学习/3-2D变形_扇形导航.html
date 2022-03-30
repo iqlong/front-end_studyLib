@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都是2D导航啦</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .son {
+
+        }
+        html,body {
+            height: 100%;
+        }
+        /* 想显示多个文字怎么办？ */
+        /* 使用的方式 - 不是组合变形，用的是定位的切换
+           使用了transitioned  可以用delay来写吧 */
+        .father {
+            line-height: 40px;
+            text-align: center;
+            position: absolute;
+            right: 50px;
+            bottom: 50px;
+            width: 40px;
+            height: 40px;
+            border: 2px solid ;
+            border-radius: 50%;
+            background: pink;
+            transition: 1s;
+        }
+        .son {
+            line-height: 30px;
+            text-align: center;
+            position: absolute;
+            right: 55px;
+            bottom: 55px;
+            width: 30px;
+            height: 30px;
+            border: 2px solid ;
+            border-radius: 50%;
+            background: gray;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="son">子1</div>
+    <!-- <div class="son"></div>
+    <div class="son"></div>
+    <div class="son"></div>
+    <div class="son"></div> -->
+
+    <div class="father">父</div>
+</body>
+<script>
+    window.onload = function() {
+        let father = document.querySelector('.father');
+        let sons = document.querySelectorAll('.son');
+
+        document.querySelector('.father').addEventListener('click',function() {
+            father.style.transform = 'rotate(360deg)';
+            sons[0].style.transform = 'rotate(360deg) translate(0px,-75px)'
+            console.log(this.style.transform)
+        })
+        sons[0].addEventListener('click',function() {
+            sons[0].style.transformOrigin = '0px 75px';
+            sons[0].style.transform = 'scale(2)';
+        })
+    }
+</script>
+</html>

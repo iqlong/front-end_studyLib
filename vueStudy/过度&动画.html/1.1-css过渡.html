@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css过渡的使用</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .zjy-enter-active{
+            transition: all 1s;
+        }
+        .zjy-leave-active{
+            transition: all 2s;
+        }
+        .zjy-enter,.zjy-leave-to{
+            transform: translate(30px) rotate(30deg);
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="show = !show">是否显示</button>
+        <transition name="zjy">
+                <div v-show="show">
+                    我是张慧龙，我发现深圳的行情好奇怪.
+                </div>
+        </transition>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                show: true,
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>

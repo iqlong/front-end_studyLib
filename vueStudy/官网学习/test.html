@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试vue</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+     {{dD}}
+     <span :class="className"></span>
+  </div>
+     
+  <script>
+    let comA = {
+        template: `
+            <span>你好!</span>
+        `
+    }; 
+    const vm = new Vue({
+    el: '#app',
+    data: {
+        dD: 'text',
+        className: 'zzz',
+    },
+    components: {
+        comA
+    },
+    methods: {
+        
+    }
+    })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标右击事件和时间修饰符</title>
+    <style>
+        div {
+            border: 2px solid red;
+        }
+    </style>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div class="outer" style="width: 200px;height: 300px">
+        <div class="inner" style="width: 100px;height: 50px"></div>
+        <div class="inner" style="width: 150px;height: 100px"></div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                text: '',
+                showIf: false,
+
+            },
+            methods: {
+                al(ev) {
+                    this.showIf = !this.showIf;
+                    console.log(ev.button,'f');
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

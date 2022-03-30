@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网格布局的骰子</title>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .gridWrap {
+            display: grid;
+            grid-template: 
+                            'xx xx 3' 40px
+                            '4 5 6' 40px
+                            '7 8 yy' 40px/ [t1] 40px [t1] 40px [t1] 40px;
+            /* grid-template-areas: 
+                            'xx 2 3'
+                            '4 5 6' 
+                            '7 8 yy' ; */
+            width: 120px;
+            height: 120px;
+            border: 1px solid;
+            border-radius: 10px;
+
+        }
+        /* 数字1 */
+        /* .number:nth-of-type(1) {
+            background: red;
+            border-radius: 50%;
+            grid-area: 2/2/3/3;
+        } */
+        .number:nth-of-type(1),.number:nth-of-type(2),.number:nth-of-type(3 ) {
+            background: blue;
+            border-radius: 50%;
+        }
+        .number:nth-of-type(1) {
+            /* grid-area: xx; */
+        }
+        .number:nth-of-type(2) {
+            /* grid-area: 3/3/4/4; */
+            grid-area: xx-start/t1/xx-end/t1;
+        }
+        .number:nth-of-type(3) {
+            /* grid-area: 3/3/4/4; */
+            grid-area: 2/2/3/3;
+        }
+    </style>
+</head>
+<body>
+    <div class="gridWrap">
+        <div class="number"></div>
+        <div class="number"></div>
+        <div class="number"></div>
+        <div class="number"></div>
+        <div class="number"></div>
+        <div class="number"></div>
+    </div>
+</body>
+</html>

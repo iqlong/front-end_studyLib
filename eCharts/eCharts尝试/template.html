@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <!--引入 echarts.js-->
+    <script src="../js/echarts.min.js"></script>
+</head>
+<style>
+
+</style>
+<script>
+    var A = function(){
+        // 数据存储
+        var ecData;
+        // ec初始化
+        var myChart = echarts.init(document.getElementById('echars_pie1'));
+
+        /** 设置统计图 */
+        var setStatisticalImage = function () {
+            var nameData = [];
+            if ( !ecData ) {
+                /** 第一次加载页面无选择时 */
+                initEvent();
+            }
+            $.each(ecData,function(index,item){
+                nameData.push(item.name);
+            })
+            var options = getOptions(nameData,ecData);
+            myChart.setOption(options,true);
+
+        }
+
+        /** 第一次获取默认数据 */
+        var initEvent = function() {
+            ecData = getEcData();
+            // 可以对饼图点击触发事件（写在这里为了切换后不重新绑定click事件）
+            myChart.on('click',function(params){
+                console.log(params);
+                console.log(params.name);
+                console.log(params.data.type);
+            })
+        }
+
+        /** 默认数据,可以从后台获取 */
+        var getEcData = function() {
+            data = [
+                {value:335, name:'南京地区',type:"1"},
+                {value:310, name:'无锡地区',type:"2"},
+                {value:234, name:'常州地区',type:"3"},
+                {value:135, name:'苏州地区',type:"4"},
+                {value:550, name:'扬州地区',type:"5"}
+            ];
+
+            return data;
+        }
+
+        /** 参数设置 */
+        var getOptions = function(nameData,data){
+            var option = {
+                title : {
+                    text: '项目数量统计',
+                    x:'center',
+                    y:'5%'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    top: '15%',
+                    data: nameData
+                },
+                series : [
+                    {
+                        name: '项目数量统计',
+                        type: 'pie',
+                        radius : '65%',
+                        center: ['50%', '60%'],
+                        data: data,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                label:{
+                                    show: true,
+                                    formatter: '{b} : {c} ({d}%)'
+                                },
+                                labelLine :{show:true}
+                            }
+                        }
+                    }
+                ]
+            }
+
+            return option;
+        }
+
+
+        var bindBtn = function(){
+            /** 饼图切换 */
+            $('#dq').on('change',function(){
+                var the = $(this);
+                // 可以直接拿着val 到后台请求一份数据
+                if ( the.val() == "032001" ) {
+                    ecData = [
+                        {value:1, name:'A地区',type:"1"},
+                        {value:2, name:'B地区',type:"2"},
+                        {value:3, name:'C地区',type:"3"},
+                        {value:4, name:'D地区',type:"4"}
+                    ];
+                } else if ( the.val() == "032002"  ) {
+                    ecData = [
+                        {value:5, name:'秦川地区',type:"1"},
+                        {value:2, name:'巴蜀地区',type:"2"},
+                        {value:3, name:'江南地区',type:"3"},
+                    ];
+                } else {
+                    ecData = getEcData();
+                }
+                setStatisticalImage();
+            })
+
+        }
+
+
+
+        return {
+            init : function(){
+                bindBtn();
+                setStatisticalImage();
+            }
+        }
+
+    }($)
+</script>
+<body>
+    <div id="echars_pie1" style="background-color: white;width:600px;height:350px;">
+        {{echarts展示区域}}
+    </div>
+    <div>
+        选择地区:
+        <select id="dq">
+            <option>请选择</option>
+            <option value="032001">31</option>
+            <option value="032002">41</option>
+        </select>
+    </div>
+</body>
+</html>

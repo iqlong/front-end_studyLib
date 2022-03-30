@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <blog-post name="zj" :post = "post" @enlarge="addWFunc" :style="{fontSize: fontSize+'px'}"
+            :input-v="iptValue" @compchange="iptValue=$event"></blog-post>
+        {{iptValue}}
+    </div>
+    <script>
+        // props看完了，
+            // 开始学习自定义事件了：$emit('enlargeWorld', 0.1)： 第一个参数是事件名字，第二个参数是事件参数
+                // 在父级中可以使用enlargWorld($event)来获取传入的参数
+        let comp = {                                                                
+                    props: ['post','inputV'],
+                    template: `
+                            <div>   
+                                <span> {{post.name}} </span>
+                                <span id="nihao"></span>
+                                <br/>
+                                <button @click="$emit('enlarge', 1, 2)">放大字体</button>
+                                <input :value="inputV" @input="$emit('compchange',$event.target.value)"></input>
+                            </div>
+                        
+                    `
+                };
+        const vm = new Vue({
+            el: '#app',
+            data: {
+               post: {
+                   name: 'zhl',
+                   id: 11,
+               },       
+               fontSize: 14,
+               iptValue: '张慧龙'
+
+            },
+            methods: {
+                addWFunc( evt,b) {
+                   console.log('h',evt,b);
+                   this.fontSize+=evt
+                }
+            },
+            components: {
+                'blog-post': comp,
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监听</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{student.name}}---{{student.age}}
+        <button @click="studentChange">改变名字</button>
+    </div>
+    <script async>
+        Vue.config.productionTip=false;
+        new Vue({
+            el: '#app',
+            data: {
+                student: {
+                    name: 'zhl',
+                    age: 23
+                }
+            },
+            methods: {
+                studentChange() {
+                    this.student.name = 'hh';
+                }
+            },
+            wathch: {
+                student() {
+                    console.log('student changed！')
+                }
+            }
+        })
+    </script>
+</body>
+</html> 

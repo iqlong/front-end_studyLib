@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>得二天的上午</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <span contenteditable>{{name}}</span>
+        第一个：<input type="text" v-model="paramOne">
+        <br>
+        第二个：<input type="text" v-model="paramTwo">
+        <br>
+        加起来：<input type="text" :value="Number(paramOne)+Number(paramTwo)">
+        <br>
+    </div>
+    <script async>
+        Vue.config.productionTip=false;
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'zhl',
+                paramOne: '',
+                paramTwo: ''
+            },
+            watch: {
+                name(a,b) {
+                    console.log('xiugail',a,b)
+                }
+            },
+            beforeCreate() {
+                debugger
+            },
+            created() {
+
+            },
+            beforeMount() {
+
+            }
+        })
+        
+    </script>
+</body>
+</html>

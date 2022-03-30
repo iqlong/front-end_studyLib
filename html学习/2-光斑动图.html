@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+ 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: black;
+        }
+        .centerContent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            margin-top: 160px;
+            font-size: 53px;
+            color: rgba(255, 255, 255,.3);
+            /* color: gray; */
+            background: linear-gradient(130deg,rgba(255,255,255,0) 40px,rgba(255,255,255,1) 90px,rgba(255,255,255,0) 140px) no-repeat;
+            /* !!!这个的no-repeat设置失败了！ */
+            /* background: linear-gradient(130deg,rgba(255,255,255,0),rgba(255,255,255,1) 50px,rgba(255,255,255,0) 100px) no-repeat; */
+            /* background: linear-gradient(to right,rgba(255,255,255,0) 0px,rgba(255,255,255,1) 28px,rgba(255,255,255,0) 56px); */
+            background-repeat:no-repeat ;
+            -webkit-background-clip: text;   
+            /* background-position: -50px 0; */
+            /* background-position: -70px 0; */
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="centerContent">
+        <h1 class="f">suan-hua智能信息有限公司</h1>
+    </div>
+ 
+</body>
+<script>
+    // 若是使用动画怎么写？
+    let h1Node = document.querySelector('h1');
+    let add = -145;
+    let inter = setInterval(function() {
+        if(add > (648-140)) {
+            add = -145;
+        }
+        add+=5;
+        h1Node.style.backgroundPosition = add+'px';
+        // window.getComputedStyle(h1Node,null).backgroundPosition = add+'px';
+
+
+    },100/6)
+    window.onload = function() {
+        document.querySelector('h1').addEventListener('hover',function() {
+            
+        }) 
+    }
+</script>
+ 
+</html>

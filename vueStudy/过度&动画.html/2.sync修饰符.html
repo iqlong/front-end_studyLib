@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用.sync实现props的双向数据流</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div :style="{fontSize: fontSizeData + 'px'}">我是父亲中的文字</div>
+    <blog-post :trans-fz.sync="fontSizeData"></blog-post>
+</div>
+<script>
+    // 知识点是： .native 和 $listeners
+    let comp = {
+        props: {
+           transFz: {
+               type: Number,
+           },
+
+        },
+        template: `
+            <div class="outer">
+                <div>我是第一个</div>
+                <button @click="$emit('update:trans-fz', 20)">点我逆改变props</button>
+            </div>
+
+        `,
+    };
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            fontSizeData: 14,
+        },
+        methods: {
+
+        },
+        components: {
+            'blog-post': comp,
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slot插槽的使用</title>
+    <script src="../js/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <my-comp>
+        <!--{{person.name}}-->
+        <template v-slot="{car: che}">{{che.name}}</template>
+    </my-comp>
+</div>
+<script>
+    const comp = {
+        name: 'fuck',
+        props: [],
+        data() {
+            return {
+                car: {
+                    name: 'benz'
+                }
+            }
+        },
+        template: `
+          <div>
+              <div>我是固定内容</div>
+              <slot :car="car"></slot>
+              <div v-for="i in 3">
+                {{i}}
+                <!--<fuck v-if="i<3">{{}}</fuck>-->
+              </div>
+          </div>
+
+        `,
+        methods:  {
+
+        },
+
+    }
+    const vm = new Vue({
+        el: '#app',
+        components: {
+            myComp: comp,
+        },
+        data: {
+            person: {
+                name: 'zhl',
+                age: 12
+            }
+        },
+        methods: {
+
+        },
+
+    })
+</script>
+</body>
+</html>

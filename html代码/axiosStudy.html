@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios的学习</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>基本使用</h2>
+        <button class="get">get请求</button>
+    </div>
+    <script>
+        let btn1 = document.querySelector('.get');
+        btn1.onclick= function() {
+            //发送AJAX请求
+            axios({
+                methods: 'GET',
+                url: 'http://localhost:3000/posts/2',
+            }).then( res => {
+                console.log(res);
+            })
+        }
+    </script>
+</body>
+</html>

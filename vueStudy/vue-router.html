@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试vueRouter</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        我是老大，就不动！
+        <!-- <router-link to="/gg/5/gg">去一个组件看看</router-link> -->
+        <router-link :to="{name: 'zComp'}">去一个组件看看</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        let hell = {
+            data() {
+                return {
+
+                }
+            },
+            mounted() {
+                // this.$router 访问路由器，也可以通过 this.$route 访问当前路由
+                console.log(JSON.stringify(this.$route.params)+'\n'+this.$router);
+            },
+            template: `
+                
+                <h1> i'm a component. 
+                    <router-view></router-view>    
+                </h1>
+            `
+        };
+        let inner = {
+            template: `<h3>嘻嘻嘻</h3>`
+        };
+        const router = new VueRouter({
+                routes: [{ 
+                    path: '/gg/jk', 
+                    model: 'history',
+                    component: hell,
+                    name: 'zComp',
+                    children: [{
+                        path: 'gg',
+                        component: inner,
+
+                    }]
+                },],
+                
+        });
+        const vm = new Vue({
+            el: '#app',
+            router,
+            data: {
+                text: '',
+            },
+            methods: {
+                al() {
+                    console.log(this,'f');
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>.has方法(一个选择器字符串|一个DOM元素)</title>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+
+                var oLi = $('li').has('ul');
+                oLi.css('background-color', '#f40');
+
+                console.log(oLi);//会返回符合条件的所有li元素，匹配到的元素是一个集合
+                console.log(oLi[0]);//返回符合条件的第1个li元素
+                console.log(oLi[1]);//返回符合条件的第2个li元素
+                console.log(oLi.length);//2；即返回符合条件的元素个数
+
+                $(document).on('click', function(event) {
+                    var obj = $(".list2");
+                    //判断当前点击的元素是否为class="list2"的li元素，是则执行下面的代码
+                    if( obj.is(event.target)){//如果此时点击的是它的子元素或者其他元素，则is()方法返回false
+                        $(".list2").attr("click","self");
+                    }
+
+                    //问： 如何判断当前点击的元素是不是目标元素的子元素呢？
+                    //答：根据event.target来筛选符合条件的obj，length属性为0肯定说明event.target不符合筛选条件。
+
+                    //判断当前点击的元素是否为class="list2"的li元素的子元素，是则执行下面的代码
+                    if( obj.has(event.target).length !== 0 ){
+                        $(".list2").attr("click","child");
+                    }
+
+                    //注：下面两种写法等价，一个是js对象，一个是jQuery对象
+                    /*
+                    *（1）$(".list2")是jQuery对象的写法。
+                    *（2）$(".list2")[0]是将jQuery对象转换为了JavaScript对象。
+                    */
+                    // if ( event.target != $(".list2")[0] && $(".list2").has(event.target).length === 0) 
+
+                    //obj.has(event.target).length === 0)说明：根据当前点击的元素并没有筛选出任何一个符合条件的父元素。
+                    //换句话说就是，当前点击的对象并不在目标元素obj的范围之内，即点击的是其他DOM元素。
+                    if ( !obj.is(event.target) && obj.has(event.target).length === 0) {
+                        console.log(event.target);
+                        $(".list2").attr('click',"other");
+                    }
+
+                    switch($(".list2").attr("click")){
+                        case "self":
+                            alert("当前点击的是list item 2元素");
+                            break;
+                        case "child":
+                            alert("当前点击的是list item 2的子元素");
+                            break;
+                        case "other":
+                            alert("当前点击的是其他元素");
+                    }
+
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h3>$('ele').has(一个选择器字符串|一个DOM元素)</h3>
+        <h3>$('ele').has()方法将会从给定的jQuery对象中重新创建一组匹配的对象。</h3>
+        <h3>提供的选择器会一一测试原先那些对象的后代，含有匹配后代的对象将得以保留。</h3>
+        <h3>如果找不到指定jQuery对象内所包含的需要匹配的元素，则$('li').has('ul').length === 0</h3>
+        <ul>
+        <li class="list1">list item 1</li>
+        <li class="list2">list item 2
+            <ul>
+            <li>list item 2-a</li>
+            <li>list item 2-b</li>
+            </ul>
+            <p>1234546</p>
+        </li>
+        <li class="list3">list item 3
+            <ul>
+            <li>list item 3-a</li>
+            <li>list item 3-b</li>
+            </ul>
+        </li>
+        <li class="list4">list item 4</li>
+        </ul>
+        
+    </body>
+</html>

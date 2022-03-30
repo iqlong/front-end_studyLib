@@ -1,0 +1,52 @@
+<!-- 
+    1.初识Vue
+    2.Vue模板语法
+    3.数据绑定
+    4.el和data的两种写法
+    5.MVVM模型
+    6.数据代理
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>defineProperty学习</title>
+ </head>
+ <body>
+     <script type="text/javascript">
+        let person = {
+            name: 'zhl',
+            sex: '男'
+        }
+        
+        Object.defineProperty(person,'age',{
+            value: 18
+            //这种方法添加的相对于普通添加的区别：不可以被枚举
+            // enumerable: true  控制是否可以枚举  默认false
+            // writable: true   控制属性是否可以被修改  false
+            // configurable: true          是否可以被删除
+
+            //当有人读取person.age属性，get函数就会被调用，返回的就是age的值
+            // get: function() {
+            //     return '';
+            // }
+                // invoke(映射) property getter(函数整体，函数名是get)
+            //当有人修改person的age属性时，set函数(setter)会被调用，且会
+                // 收到修改的具体值
+            //set(value) {
+            //  console.console.log('修改后的值是',value);
+            //}
+        });
+        //再说一边for in数组是index；for of数组是value
+        console.log(person);
+        // let d = function d() {
+        //     return 'x'
+        // }
+        // d() {
+        //     return 'xx'
+        // }
+    </script>
+ </body>
+ </html>

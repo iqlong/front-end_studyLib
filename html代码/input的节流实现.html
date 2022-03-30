@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input的节流实现</title>
+</head>
+<body>
+    <input type="text" placeholder="请随便输入，我可以节流.">
+    <script>
+        function throttle(){
+            let id=null;
+            return function (func, time){
+                if(!id){
+                    id=setTimeout(() => {
+                        console.log(func)
+                        // time结束执行完函数还要将变量清空
+                        id = null;
+                    },time)
+
+                }
+            }
+        }
+        let trueFunc = throttle();
+        document.querySelector('input').oninput = function (event) {
+            trueFunc(event.target.value, 1000);
+        }
+    </script>
+</body>
+</html>
