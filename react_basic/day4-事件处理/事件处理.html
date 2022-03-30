@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+                content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="../js/react.development.js"></script>
+        <script src="../js/react-dom.development.js"></script>
+        <script src="../js/babel.min.js"></script>
+        <title>初见事件处理</title></title>
+    </head>
+    <body>
+        <div id="react"></div>
+        <script type="text/babel">
+            class MyInput extends React.Component{
+                render(){
+                    return (
+                        <div>
+                            // 为什么这个change事件和原生的事件不一样
+                            <input onChange={this.changeFunc} type="text"/>
+                        </div>
+                    )
+                };
+                changeFunc = () => {
+                    console.log('hello')
+                }
+            }
+            ReactDOM.render(<MyInput/>, document.getElementById('react'))
+        </script>
+    </body>
+
+</html>

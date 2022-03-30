@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <!-- // 引入prop-types个组件属性做数据类型限制 -->
+    <script src="../js/prop-types.js"></script>
+    <title>props的使用</title>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <script type="text/babel">
+       // props的基本使用
+       // 批量传递props
+       // 对props进行类型限制
+          // 首先是类式的组件
+        class Person extends React.Component{
+            render() {
+                let {name, age, gender, funct} = this.props;
+                return (
+                    <ul>
+                        <li>{name}</li>
+                        <li>{age}</li>
+                        <li>{gender}</li>
+                    </ul>
+                )
+            }
+            // 给props做数据类型的限制
+            static propTypes = {
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number,
+                gender: PropTypes.string,
+                // 注意函数的类型在react中是func，而不是function
+                funct: PropTypes.func
+            };
+            // props设置默认值
+            static defaultProps = {
+                age: 18,
+                gender: '男'
+
+        };
+
+        };
+
+        // 一个对象用于批量传入props
+        let personExample = {
+            name: '小芳',
+            age: 19,
+            gender: 'female'
+        };
+        // props的基本使用：一个一个的传递参数
+        ReactDOM.render(<Person name="张慧龙" age={18} gender="male"/>, document.getElementById('test'))
+        ReactDOM.render(<Person {...personExample}/>, document.getElementById('test1'))
+        ReactDOM.render(<Person name="外星人" funct={
+            function(){console.log('我就溜达一下.');}
+        }/>, document.getElementById('test2'))
+    </script>
+</body>
+</html>

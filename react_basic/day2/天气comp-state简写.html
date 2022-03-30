@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <title>天气: 热/凉快</title>
+</head>
+<body>
+    <div id="react"></div>
+    <script type="text/babel">
+        // 类式组件
+        class Weather extends React.Component{
+            state={
+                isHot: true
+            };
+            render() {
+                return (
+                    <h3 onClick={this.changeW}>
+                        今天天气很{this.state.isHot? '炎热':'凉爽'}
+                    </h3>
+                )
+
+            }
+
+            changeW = () => {
+                let isHot = this.state.isHot;
+                this.setState({
+                    isHot: !isHot
+                })
+            }
+
+        }
+
+        ReactDOM.render(<Weather/>, document.getElementById('react'));
+    </script>
+</body>
+</html>

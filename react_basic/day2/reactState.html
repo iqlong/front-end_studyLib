@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="react"></div>  
+    <script type="text/babel">
+        class Weather extends React.Component{
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isHot: false
+                }
+
+            };
+            render() {
+                // 下面的this是组件实例对象
+                // console.log(this);
+                return <h3>今天天气很{this.state.isHot ? '炎热':'凉爽'}</h3>
+            }
+        }
+        ReactDOM.render(<Weather/>, document.getElementById('react'));
+    </script>
+</body>
+</html>

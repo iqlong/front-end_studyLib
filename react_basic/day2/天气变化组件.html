@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <title>天气: 热/凉快</title>
+</head>
+<body>
+    <div id="react"></div>
+    <script type="text/babel">
+        // 类式组件
+        class Weather extends React.Component{
+            // 执行次数：渲染的1次   只有一个<Weather/>
+            constructor(props) {
+                super(props);
+                this.state={
+                    isHot: true,
+                    fal: false
+                };
+                this.changeW = this.setWeather.bind(this);
+            }
+            // 执行次数1+n
+            render() {
+                // 开始要注意：函数表达式要放在{}中，且不要加() => 防止一开始就执行函数
+                    // 第二个注意：类中(默认'use strict')且变量onclick指向类中函数，
+                    //   会导致this的变化
+                // react中的语法  onclick ===> onClick
+                return <h3 onClick={this.changeW}>今天天气很{this.state.isHot? '炎热':'凉爽'}</h3>
+            }
+            // 执行次数：点击的n次
+            setWeather() {
+                // 注意：react中不可以直接改变state的值，需要setState方法来改变
+                // 构函中 bind 了this指向，所以下面的代码没有问题
+                let isHot = this.state.isHot;
+                this.setState({
+                    isHot: !isHot
+                })
+            }
+
+        }
+
+        ReactDOM.render(<Weather/>, document.getElementById('react'));
+    </script>
+</body>
+</html>

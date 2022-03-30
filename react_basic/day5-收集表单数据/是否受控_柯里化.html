@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+<div id="react"></div>
+<script type="text/babel">
+    // 不受控组件，就是通过ref临时拿到想要的数据
+    // 受控组件，将想要的数据放到state中，类似与Vue中的双向数据绑定
+    class MyForm extends React.Component{
+        render() {
+            return (
+                <div>
+                    <label htmlFor="fstInput">账号:&nbsp;&nbsp;</label>
+                    <input id="fstInput" type="text" onChange={this.logMessage('username')}/>
+                    <br/>
+
+                    <label htmlFor="fstPassword">密码:&nbsp;&nbsp;</label>
+                    <input id="fstPassword" type="text" onChange={(event) => {
+                        this.logPassword('password',event)
+                    }
+                    }/>
+                    <br/>
+
+                    <label htmlFor="">确认密码:&nbsp;&nbsp;</label>
+                    <input type="text" onChange={this.logConfirmPsd('confirmPwd')}/>
+                </div>
+            )
+        };
+        logMessage = (val) => {
+            return (event) => {
+                console.log(`${val}的值是 --- ${event.target.value}`)
+            }
+        };
+        logPassword = (val, evt) => {
+            console.log(`${val}的值是 --- ${evt.target.value}`)
+        };
+        logConfirmPsd = (val) => {
+            return (event) => {
+                this.setState({
+                    [val]: event.target.value
+                })
+                // 这里要使用类似nextTick的方式获取值
+                // console.log(this.state[val])
+            }
+        }
+
+    }
+
+    ReactDOM.render(<MyForm/>, document.getElementById('react'));
+</script>
+</body>
+</html>

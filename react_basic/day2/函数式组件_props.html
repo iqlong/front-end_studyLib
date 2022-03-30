@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <title>模板 :-) </title></title>
+</head>
+<body>
+    <div id="react"></div>  
+    <script type="text/babel">
+        // 因为函数可以接受参数，可以用props
+            // 在17.x之后才可以利用hooks使用states和refs
+        function TComp(pp) {
+            let {name, age} = pp;
+            return <ul>
+                <li>{name}</li>
+                <li>{age}</li>
+            </ul>
+        }
+        // 也可以使用props的数据类型和默认值
+        TComp.propTypes = {
+            // script导入prop-types后才可以使用下面的
+            // name: PropsTypes.stirng
+        };
+        TComp.defaultProps = {
+
+        }
+        let p = {
+            name: 'zhl',
+            age: 20
+        }
+        ReactDOM.render(<TComp {...p} />, document.getElementById('react'));
+    </script>
+</body>
+</html>

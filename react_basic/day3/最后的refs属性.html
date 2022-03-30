@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+                content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="../js/react.development.js"></script>
+        <script src="../js/react-dom.development.js"></script>
+        <script src="../js/babel.min.js"></script>
+        <title>refs的多种使用</title></title>
+    </head>
+    <body>
+        <div id="react"></div>
+        <script type="text/babel">
+            class TestRefs extends React.Component{
+                // 不推荐的this.refs方法
+                alertV = () => {
+                    console.log('@不推荐的this.refs',this.refs.g.value);
+                    console.log('');
+                };
+                // refs回调形式
+                alertInp2 = () => {
+                    console.log('@refs回调形式s',this.input2.value)
+                    console.log('');
+                };
+                // class绑定函数： 回调refs的扩展------解决组件更新出现的两次执行问题
+                cBindFunc = (currentV) => {
+                    this.input3 = currentV
+                };
+                alertInp3 = () => {
+                    console.log('@class绑定函数',this.input3.value);
+                    console.log('');
+                }
+                    // react主推的方法
+                recommendFunc = React.createRef();
+                alertInp4 = () => {
+                    // 生成一个存储ref的容器        专人专用，只存一个 {current:  dom}
+                    console.log('@react主推的createRef()',this.recommendFunc.current.value);
+                    console.log('');
+                }
+                // react主推的方法
+                recommendFunc = React.createRef();
+                render() {
+                    return (
+                        <div>
+                            <input ref="g" type="text" placeholder="字符转refs"></input> &nbsp;
+                            <button onClick={this.alertV}>字符转refs</button>
+                            <br/><br/>
+
+                            <input ref={ currentV => this.input2 = currentV}
+                                type="text" placeholder="回调ref"></input> &nbsp;
+                            <button onClick={this.alertInp2}>回调ref</button>
+                            <br/><br/>
+
+                            <input ref={this.cBindFunc }
+                                type="text" placeholder="class绑定函数"></input> &nbsp;
+                            <button onClick={this.alertInp3}>class绑定函数</button>
+                            <br/><br/>
+
+                            <input ref={this.recommendFunc }
+                                type="text" placeholder="React.createRef()"></input> &nbsp;
+                            <button onClick={this.alertInp4}>React中api操作</button>
+                        </div>
+                    )
+                }
+            }
+            ReactDOM.render(<TestRefs></TestRefs>, document.getElementById('react'));
+        </script>
+    </body>
+
+</html>

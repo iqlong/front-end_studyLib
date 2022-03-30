@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="react"></div>  
+
+    <script type="text/babel">
+        const VDom = function FuncComp() {
+            return <h1>我是一个函数式组件</h1>
+        };
+        class ClassComp extends React.Component{
+            render() {
+                return <h3>我是一个类式组件</h3>
+            }
+        }
+        // 函数式组件的使用
+        ReactDOM.render(<VDom></VDom>, document.getElementById('react'));
+        // 类式组件的使用
+            // 再次的render()是覆盖操作
+        ReactDOM.render(<ClassComp/>, document.getElementById('react'));
+    </script>
+</body>
+</html>

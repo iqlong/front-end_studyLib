@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../js/react.development.js"></script>
+    <script src="../../js/react-dom.development.js"></script>
+    <script src="../../js/babel.min.js"></script>
+</head>
+<body>
+<div id="react"></div>
+<hr>
+<button>重新挂载组件</button>
+<script type="text/babel">
+    class MyForm extends React.Component{
+        state = {
+            count: 0
+        }
+        constructor(props){
+            super(props);
+            console.log('MyForm --- 构造器调用')
+        }
+        componentWillMount(){
+            console.log('MyForm --- 开始挂载')
+        }
+
+        render() {
+            console.log('MyForm --- render调用')
+            return (
+                <div>
+                    <div>{this.state.count}</div>
+                    <br/>
+                    { /* 习惯性的写成了 addOne */}
+                    <button onClick={this.addOne}>加1</button>
+                    <hr/>
+                    <button onClick={() => {
+                            ReactDOM.unmountComponentAtNode(document.getElementById('react'))
+                        }
+                    }>销毁组件</button>
+                    <br/>
+                    <button onClick={this.forceUComp}>强制更新组件</button>
+
+                </div>
+            )
+        };
+        componentDidMount(){
+            console.log('MyForm --- 挂载完毕')
+        }
+        componentWillUnmount(){
+            console.log('MyForm --- 开始销毁')
+        };
+
+                // 更新方面的钩子函数
+        // 是否调用更新钩子的阀门函数
+            // 使用setState的时候会调用此钩子
+        shouldComponentUpdate(){
+            console.log('MyForm组件的更新阀门')
+            return true;
+        }
+        // 开始更新
+        componentWillUpdate(){
+            console.log('MyForm组件开始更新')
+        }
+        // 跟新完毕
+        componentDidUpdate(){
+            console.log('MyForm组件更新结束')
+        }
+        // 父子组件传值的钩子函数
+            // 第一次父给子传props不会调用，父更新一次后才会调用
+        componentWillReceiveProps(){
+
+        }
+
+
+        addOne = () => {
+            let {count} = this.state;
+            this.setState({
+                count: ++count
+            })
+        };
+        forceUComp = () => {
+            this.forceUpdate();
+        }
+
+    }
+    document.querySelector('button').onclick = () => {
+        ReactDOM.render(<MyForm/>, document.getElementById('react'))
+
+    };
+    ReactDOM.render(<MyForm/>, document.getElementById('react'));
+</script>
+</body>
+</html>
