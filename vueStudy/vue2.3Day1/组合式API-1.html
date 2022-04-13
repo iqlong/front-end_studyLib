@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浅试组合式API</title>
+    <script src="../js/vue3.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.6/r.js"></script>
+</head>
+<body>
+<div id="app">
+</div>
+<script type="module">
+    import {ref} from '../js/vue.esm-browser.js'
+    // let m = require('../js/vue3.js')
+    console.log(ref)
+    let CompApi = {
+        setup(props){
+            console.log(props.name);
+            let x= ref(1);
+            // 上面代码的x： {value: 1}
+            function addNum(){
+                x.value++;
+            }
+            return {
+                x,
+                addNum
+            }
+        },
+        template: `
+            <div>{{num}}
+                <button @click="addNum">num++</button>
+            </div>
+        `
+    }
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+
+        },
+        template: `<Comp-api/>`
+    });
+
+</script>
+</body>
+</html>

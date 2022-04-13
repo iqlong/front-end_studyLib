@@ -5311,6 +5311,7 @@
     abstract: true,
 
     props: {
+      // String/RegExp/Array类型
       include: patternTypes,
       exclude: patternTypes,
       max: [String, Number]

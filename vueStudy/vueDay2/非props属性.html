@@ -11,25 +11,43 @@
 <div id="app">
     <div v-bind="objPerson"></div>
     {{objPerson}}
-    <blog-post name="你好" :inpV="iptValue" class="jj" @click.native="cLog($attrs)"></blog-post>
+    <blog-post name="你好" post="gg" :inpV="iptValue" class="jj" @click.native="cLog($attrs)">
+        <template v-slot:first>
+            <div>有名字的张慧龙</div>
+        </template>
+        <span>没名字的张慧龙</span>
+
+    </blog-post>
 </div>
 <script>
     // props看完了，
     // 开始学习自定义事件了：$emit('enlargeWorld', 0.1)： 第一个参数是事件名字，第二个参数是事件参数
     // 在父级中可以使用enlargeWorld($event)来获取传入的参数
     let comp = {
-        inheritAttrs: false,
+        // 默认就是true
+        // inheritAttrs: true,
         props: ['post'],
+        data() {
+            return {
+                obj: {
+                    name: 'zhl'
+                }
+            }
+        },
         template: `
           <div>
-              <button @click="cLog($slots)">输出$attrs</button>
+              <button @click="cLog($event,$attrs,$props,$slots)">输出$attrs</button>
               <span>jkj</span>
+              <slot name="first"></slot>
+              <slot></slot>
+              <span v-for="(item,index) in $slots">fdd{{index}}</span>
           </div>
-
         `,
         methods: {
-            cLog(val) {
-                console.log(val)
+            cLog(e,val,val2,val3) {
+                console.log(val,val2,val3);
+                e.preventDefault();
+                e.stopPropagation();
             }
         }
     };

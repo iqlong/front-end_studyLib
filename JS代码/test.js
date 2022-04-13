@@ -1,10 +1,19 @@
-(function printf(){
-    function  printf(){
-        console.log('第一个输出')
-    }
-    printf();
-    function  printf(){
-        console.log('第二个输出')
-    }
-    console.log('第三个输出')
-})()
+const p = function() {
+    return new Promise((resolve, reject) => {
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            },0)
+            resolve(2)
+        })
+        p1.then((res) => {
+            console.log(res);
+        })
+        console.log(3);
+        resolve(4);
+    })
+}
+p(). then((res) => {
+    console.log(res);
+})
+console.log( 'end' );

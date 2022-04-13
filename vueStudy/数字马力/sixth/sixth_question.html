@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抢卷的简单实现</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <style>
+        html {
+            font-size: 60px;
+        }
+
+        body {
+            background: #E3E3E3;
+        }
+
+        .card {
+            width: 700px;
+            height: 200px;
+            background-image: url(https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*HD9_S4RyppUAAAAAAAAAAAAAARQnAQ);
+            background-size: 100% auto;
+            background-position: center;
+
+            padding: 0px 20px;
+            margin: 0 auto 0.4rem;
+        }
+        .card-left {
+            width: 500px;
+            height: 200px;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+        .card-left>.distance {
+            float: right;
+            line-height: 36px;
+            color: gray;
+        }
+
+        .card-left-title {
+            line-height: 0.36rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-left-title>img {
+            height: 36px;
+            width: 36px;
+        }
+
+        .card-left-title>div {
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .content {
+            display: flex;
+            margin-top: 11px;
+        }
+        .content>.left>img {
+            box-shadow: 0px 0px 15px #888888;
+            border-radius: 3%;
+            width: 133px;
+            height: 133px;
+        }
+        .content>.right {
+            margin-left: 25px;
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .content>.right>img {
+            height: 30px;
+            margin-right: 8px;
+        }
+        .content>.right>.message {
+            font-weight: bold;
+            line-height: 24px;
+        }
+        .content>.right>.currentPrice {
+            font-size: 32px;
+            color: #FB0005;
+            font-weight: bold;
+            flex-basis: 300px;
+        }
+        .content>.right>.historyPrice {
+            font-size: 20px;
+            /* color: #83530c; */
+            color: gray;
+            text-decoration: line-through;
+        }
+
+        .card-right {
+            width: 165px;
+            height: 200px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .use-alignContent{
+            /* 使用默认的stretch样式 */
+            /*align-content: space-between;*/
+        }
+        .use-alignItems {
+            /*align-items: center;*/
+            align-content: center;
+        }
+        .card-right>.discount {
+            color: #83530c;
+            background-repeat: no-repeat;
+            background-position: -9px -7px;
+            font-size: 20px;
+            background-size: 126px 35px;
+            background-image: url("./discountBack.png");
+            padding: 0 30px;
+            line-height: 20px;
+        }
+        .card-right>.btn {
+            width: 124px;
+            height: 60px;
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+            background-color: #FC1F4B;
+            border-radius: 32px;
+            line-height: 60px;
+            text-align: center;
+            border: 0px;
+
+            align-self: flex-start;
+        }
+        .card-right>.btn.unDisabled:hover {
+            cursor: pointer;
+            background-color: #C11534;
+        }
+        .disable:hover{
+            cursor: not-allowed;;
+        }
+        .card-right>.count {
+            color: gray;
+        }
+        div {
+            font-size: 24px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div>vue版本</div>
+<div id="app-vue"></div>
+<div style="margin-top: 100px;"> react 版本</div>
+<div id="app-react"></div>
+<script type="text/babel">
+    /**
+     * 营销卡片渲染数据
+     */
+    let cardDataList = [
+        {
+            brandName: '弄堂里',
+            brandLogo: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*anNdQqA_I_AAAAAAAAAAAAAAARQnAQ',
+            distanceDesc: '500m',
+            // 以实物为准的图片
+            campImage: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*U29sSqgeU-4AAAAAAAAAAAAAARQnAQ',
+            promoLogo: [
+                // 口碑图片
+                'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*y6CTRo9L2oEAAAAAAAAAAAAAARQnAQ',
+
+            ],
+            voucherDesc: '弄堂里14元超值优惠券包x2',
+            benefitAmount: '1',
+            oriPriceAmount: '28',
+            discountDesc: '0.6折',
+            voucherStockNum: '库存888份'
+        },
+        {
+            brandName: '弄堂里',
+            brandLogo: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*anNdQqA_I_AAAAAAAAAAAAAAARQnAQ',
+            distanceDesc: '500m',
+            // 以实物为准的图片
+            campImage: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*U29sSqgeU-4AAAAAAAAAAAAAARQnAQ',
+            promoLogo: [
+                // 狂欢月图片
+                'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*Q1d4SIoeKRkAAAAAAAAAAAAAARQnAQ',
+            ],
+            voucherDesc: '弄堂里14元超值优惠券包x2',
+            benefitAmount: '8',
+            discountDesc: '0.6折',
+        },
+        {
+            brandName: '飞猪',
+            brandLogo: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*dCL5Q4oBaQsAAAAAAAAAAAAAARQnAQ',
+            campImage: 'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*MZ7VSaNZXRYAAAAAAAAAAAAAARQnAQ',
+            promoLogo: [
+                // 狂欢月图片
+                'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*Q1d4SIoeKRkAAAAAAAAAAAAAARQnAQ',
+                'https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*90WEQLmnKdkAAAAAAAAAAAAAARQnAQ',
+
+            ],
+            voucherDesc: '南方航空20元优惠券',
+            benefitAmount: '20'
+        },
+    ];
+
+    /** Vue **/
+    const CardVue = {
+        props: {
+            data: Object,
+            time: Number
+        },
+        data() {
+            return {
+                status: '抢购',
+            }
+        },
+        methods: {
+            rushPurchase(){
+                setTimeout(() => {
+                    this.status = '已抢购'
+                },500)
+            }
+
+        },
+
+        template: `
+          <div class="card">
+          <div class="card-right" :class="{'use-alignItems': !data.discountDesc, 'use-alignContent': data.discountDesc}">
+            <div class="discount" v-if="data.discountDesc">{{data.discountDesc}}</div>
+            <button class="btn" :class="{'unDisabled': time === 0,'disable' : time!==0}" :disabled="time > 0" @click="rushPurchase">{{ status }}</button>
+            <div v-if="data.voucherStockNum" class="count">{{data.voucherStockNum}}</div>
+          </div>
+          <div class="card-left">
+            <div class="distance">{{data.distanceDesc}}</div>
+            <div class="card-left-title">
+              <img :src="data.brandLogo" alt="" />
+              <div>{{data.brandName}}</div>
+            </div>
+            <div class="content">
+              <div class="left">
+                <img :src="data.campImage"/>
+              </div>
+              <div class="right">
+                <img :src="data.promoLogo[0]">
+                <img v-if="data.promoLogo[1]" :src="data.promoLogo[1]">
+                <div class="message">{{data.voucherDesc}}</div>
+                <div class="currentPrice price">{{data.benefitAmount}}元</div>
+                <div v-if="data.oriPriceAmount" class="historyPrice price">{{data.oriPriceAmount}}元</div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+        `
+    };
+
+    const CardListVue = new Vue({
+        el: '#app-vue',
+        components: { CardVue },
+        data:{
+            cardDataList,
+            seconds: 10,
+            id: null
+        },
+        mounted() {
+            this.id = setInterval(()=>{
+                this.seconds--;
+            }, 1000)
+        },
+        watch: {
+            seconds:function (newV){
+                if(newV === 0) {
+                    clearInterval(this.id);
+                }
+            }
+        },
+
+        template: `
+          <div>
+          <div v-if="seconds>0">{{seconds}}秒后开始抢购</div>
+          <cardVue ref="childCard" :time="seconds" v-for="(cardData, index) in cardDataList" :data="cardData" :key="index" />
+          </div>
+        `,
+    })
+
+    // Vue.createApp(CardListVue).mount('#app-vue');
+    /**
+     * react 部分
+     * */
+    class Card extends React.Component{
+        state = {
+            status: '抢购'
+        };
+        rushPurchase = () => {
+            this.setState({
+                status: '已抢购'
+            })
+        };
+        render(){
+            let {data, time} = this.props;
+            return (
+                <div className="card">
+                    <div className={`card-right ${!data.discountDesc? 'use-alignItems':''} ${ data.discountDesc ? 'use-alignContent':''}`}>
+                    {(() => {
+                        if(data.discountDesc){
+                            return  <div className="discount">{data.discountDesc}</div>
+                        }
+                    })()}
+
+
+                    <button className={`btn ${time===0 ? 'unDisabled':'disable'}`} disabled={time>0}  onClick={this.rushPurchase}>{ this.state.status }</button>
+                    {(() => {
+                        if(data.voucherStockNum){
+                            return <div className="count">{data.voucherStockNum}</div>
+                        }
+                    })()}
+
+                    </div>
+                        <div className="card-left">
+                            <div className="distance">{data.distanceDesc}</div>
+                            <div className="card-left-title">
+                                <img src={data.brandLogo} alt="" />
+                            <div>{data.brandName}</div>
+                        </div>
+                        <div className="content">
+                            <div className="left">
+                                <img src={data.campImage}/>
+                            </div>
+                            <div className="right">
+                                <img src={data.promoLogo[0]}/>
+                                <img v-if="data.promoLogo[1]" src={data.promoLogo[1]}/>
+                                <div className="message">{data.voucherDesc}</div>
+                                <div className="currentPrice price">{data.benefitAmount}元</div>
+                                <div v-if="data.oriPriceAmount" className="historyPrice price">{data.oriPriceAmount}元</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    };
+
+
+    class CardList extends React.Component{
+        state= {
+            cardDataList,
+            seconds: 10,
+            id: null
+        };
+        render() {
+            let {seconds, cardDataList} = this.state;
+            // 模板return在这下面
+            return (
+                <div>
+                    {(() => {
+                        if(seconds>0){
+                            return <div>{this.currentSeconds}秒后开始抢购</div>;
+                        }
+                    })()}
+
+                    {cardDataList.map((item,index)=>{
+                        return <Card time={seconds} key={index} data={item}></Card>
+                    })}
+                </div>
+            )
+        };
+        componentDidMount() {
+            this.state.id = setInterval(() => {
+                this.setState({
+                    seconds: this.state.seconds-1
+                });
+                if(this.state.seconds==0){
+                    // 解决临界问题
+                    this.currentSeconds;
+                }
+            },1000)
+        };
+        // 以此实现vue中watch的get newVal的作用
+        get currentSeconds(){
+            const {seconds,id} = this.state;
+            if(seconds === 0){
+                clearInterval(id);
+                return;
+            }
+            return seconds;
+        }
+    }
+
+
+
+    ReactDOM.render(<CardList/>, document.getElementById('app-react'));
+
+
+</script>
+</body>
+</html>

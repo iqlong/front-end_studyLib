@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板</title>
+    <script src="../js/vue3.js"></script>
+</head>
+<body>
+<div id="app">
+    {{x}}
+    <button @click="multiOperate">+</button>
+    <button @click="x='nio'">一样</button>
+
+    <button @click="testM">添加watch</button>
+</div>
+<script>
+    Vue.createApp({
+        el: '#app',
+        data() {
+            return {
+                x: 'nihao',
+                g: 'x'
+            }
+        },
+        computed:{
+            cx(){
+                console.log('computed')
+                return this.x+'added';
+            }
+        },
+
+        methods: {
+            mx(){
+                console.log('methoded')
+                return this.x+'added';
+            },
+            multiOperate(){
+                this.x+='g';
+            },
+            testM(){
+                this.$watch('x',(nv,ov)=>{
+                    console.log('g')
+                    console.log(`新值${nv}，旧值${ov}`);
+                })
+            }
+        }
+    }).mount('#app');
+
+</script>
+</body>
+</html>

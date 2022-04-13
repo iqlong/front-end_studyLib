@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="comp='first'">一</button>
+    <button @click="comp='second'">二</button>
+    <keep-alive>
+        <component :is="comp"></component>
+    </keep-alive>
+</div>
+<script>
+    let acMix = {
+        activated(){
+            console.log('我是假的mounted钩子函数')
+        },
+        deactivated(){
+            console.log('我是假的unmounted钩子函数')
+        }
+
+    }
+    let first = {
+        mixins:[acMix],
+        data(){
+            return{
+                sh: false
+            }
+        },
+        template: `
+            <div>我是第一个组件
+                <button style="display: block" @click="sh=!sh">显示</button>
+                <div v-show="sh">我是大王</div>
+            </div>
+        `
+    }
+    let second = {
+        mixins:{
+            acMix
+        },
+        template: `
+            <div>我是第二个组件</div>
+        `
+    }
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            comp: 'first'
+        },
+        methods: {
+
+        },
+        components: {
+            first,second
+        }
+
+    });
+
+</script>
+</body>
+</html>

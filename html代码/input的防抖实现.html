@@ -8,6 +8,7 @@
     <title>在input中使用防抖函数</title>
 </head>
 <body>
+    <button>点击输出</button>
     我可以防抖哦： <input type="text" placeholder="请尽情折磨我吧!">
     <script>
         let input = document.querySelector('input');
@@ -22,7 +23,10 @@
                     console.log(that.value);
                 }, 1500)
             }
-        }) ()
+        }) ();
+        document.querySelector('button').onclick = function (){
+            console.log('x')
+        }
 
 
     </script>
