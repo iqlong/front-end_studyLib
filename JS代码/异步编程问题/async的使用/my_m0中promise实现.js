@@ -6,7 +6,7 @@ function resolveAfter2Seconds() {
     });
 }
 
-async function asyncCall() {
+function asyncCall() {
     console.log('calling');
     resolveAfter2Seconds().then((mes) => {
         console.log('@',mes);

@@ -70,6 +70,7 @@ class LinkList{
         }else {
             // 这个是计数用的for循环
             for(let i=1;i<index;i++){
+                // 没有通过引用修改什么东西，只是修改了应用的指向
                 element = element.next;
             }
         }
@@ -84,7 +85,7 @@ lList.appendChild(1);
 lList.appendChild(3);
 lList.appendChild(4);
 lList.appendChild(5);
-lList.insertInto(2,111)
+lList.insertInto(0,111)
 lList.deleteElement(5)
 console.dir(lList,{depth: 100})
 console.log(lList.searchIndex(1112))

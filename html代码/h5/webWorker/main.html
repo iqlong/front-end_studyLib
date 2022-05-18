@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用Worker的页面</title>
+</head>
+<body>
+    <script>
+        // for(let i=0;i<200000;i++){
+        //     console.log(i)
+        // }
+        let worker = new Worker('./worker.js');
+        worker.postMessage(200000);
+        worker.onmessage=function (e){
+            let mes = e.data;
+            console.log('Message received from worker: ',mes);
+        }
+        worker.onerror=(e) => {
+            console.log(`专有工作者线程报错`)
+        }
+    </script>
+    <div>你好，我出现了</div>
+</body>
+</html>

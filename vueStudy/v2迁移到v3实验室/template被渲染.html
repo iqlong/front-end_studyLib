@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>template被浏览器解析</title>
+    <script src="../js/vue3.js"></script>
+    <!--<script src="../js/vue.js"></script>-->
 </head>
 <body>
-$END$
+    <div id="app"></div>
+    <script>
+        let vm = Vue.createApp({
+            template: `
+                <template is="vue:jk">
+                   <span>你好，我是app实例.</span>
+                </template>
+            `
+        })
+        vm.mount('#app')
+        // new Vue({
+        //    el: '#app',
+        //     template: `
+        //         <template>
+        //            <span>你好，我是app实例.</span>
+        //         </template>
+        //     `
+        // })
+    </script>
 </body>
 </html>
