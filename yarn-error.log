@@ -1,0 +1,36 @@
+Arguments: 
+  D:\softWare\a-programEnv\nodejs\node.exe C:\Users\张慧龙\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add bable-cli -g
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\softWare\a-programEnv\Git\cmd;D:\softWare\a-programEnv\Microsoft VS Code\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\张慧龙\AppData\Local\Microsoft\WindowsApps;D:\Program Files\Java\jdk1.8.0_74\bin;D:\briup\Microsoft VS Code\bin;C:\Users\张慧龙\AppData\Roaming\npm;D:\360安全浏览器下载\IntelliJ IDEA 2021.2.3\bin;D:\QQGameTempest\Hall.57734\;D:\softWare\a-programEnv\nodejs;D:\softWare\a-programEnv\Git\bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.15.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.npm.taobao.org/bable-cli: [NOT_FOUND] bable-cli not found
+      at Request.params.callback [as _callback] (C:\Users\张慧龙\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
+      at Request.self.callback (C:\Users\张慧龙\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
+      at Request.emit (node:events:527:28)
+      at Request.<anonymous> (C:\Users\张慧龙\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
+      at Request.emit (node:events:527:28)
+      at Gunzip.<anonymous> (C:\Users\张慧龙\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
+      at Object.onceWrapper (node:events:641:28)
+      at Gunzip.emit (node:events:527:28)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
