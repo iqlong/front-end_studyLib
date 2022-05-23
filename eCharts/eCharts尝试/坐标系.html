@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>坐标系</title>
+  <!--引入 echarts.js-->
+  <script src="../js/echarts.min.js"></script>
+</head>
+<style>
+  div {
+    width: 600px;
+    height: 400px;
+  }
+</style>
+<body>
+    <div id="dd"></div>
+    <script>
+      let myECharts = echarts.init(document.getElementById('dd'))
+      let option = {
+        title: {
+          text:'我的第一次自我尝试'
+        },
+        // 提示框组件
+        tooltip: {},
+        xAxis: {},
+        yAxis: {},
+        series: {
+          type: 'scatter',
+          data: [
+                 [12,23],
+                 [33,55],
+                 [34,12],
+                 [3,59]
+          ]
+        }
+      }
+      myECharts.setOption(option)
+    </script>
+</body>
+</html>

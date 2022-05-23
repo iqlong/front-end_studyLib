@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts</title>
+    <script src="echarts.min.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+    <div id="main" style="width: 600px;height: 400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["红薯","土豆","西红柿","西瓜","香蕉","苹果梨"]
+            },
+            yAxis: {
+                // data: ["红薯","土豆","西红柿","西瓜","香蕉","苹果梨"]
+                // data: ["5","10","15","20","25","30"]
+                // show: false
+            },
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5,20,36,10,10,20]
+            }]
+        };
+        // 使用刚才指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

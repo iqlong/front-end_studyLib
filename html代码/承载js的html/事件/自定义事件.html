@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section style="font-size: 30px">标题
+        <p3 id="ts">我是一个粉刷匠！</p3>
+    </section>
+    <script>
+        // let pEle=document.querySelector('p3')
+        let pEle=document.getElementById('ts')
+        pEle.x='g'
+        let section = document.querySelector('section')
+        pEle.onclick = function (val){
+            // console.log(this)
+            console.log(this)
+            let ev=new Event('changeFz');
+            ev.newValue='14px';
+            pEle.dispatchEvent(ev)
+            // ev.apply(this,arguments)
+        }
+        pEle.addEventListener('click',function () {
+            // console.log('字的大小改变了')
+            // console.log(e    .newValue)
+            // console.log(this)
+            // this.style.fontSize=e.newValue
+            console.log(this.x)
+        },false)
+        // changeFz('14px')
+    </script>
+</body>
+</html>

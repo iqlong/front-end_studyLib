@@ -1,0 +1,11 @@
+.outer {
+  background-color: aqua;
+  width: 400px;
+  height: 400px;
+}
+.outer .inner {
+  background-color: burlywood;
+  width: 60px;
+  height: 60px;
+  margin: 20px;
+}

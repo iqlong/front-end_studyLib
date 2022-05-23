@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>7-旭日图</title>
+  <!-- 引入 echarts.js -->
+  <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    let myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    let option = {
+      series: {
+        type: 'sunburst',
+        data: [{
+          name: 'A',
+          value: 10,
+          children: [{
+            value: 3,
+            name: 'Aa',
+            //itemStyle: {
+            //    color: 'blue'
+            //}
+          }, {
+            value: 5,
+            name: 'Ab'
+          }]
+        }, {
+          name: 'B',
+          children: [{
+            name: 'Ba',
+            value: 4
+          }, {
+            name: 'Bb',
+            value: 2
+          }]
+        }, {
+          name: 'C',
+          value: 3
+        }]
+      }
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+</html>

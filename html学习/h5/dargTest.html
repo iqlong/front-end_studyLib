@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* Prevent the user selecting text in the example */
+        user-select: none;
+      }
+
+      #draggable {
+        text-align: center;
+        background: white;
+      }
+
+      .dropzone {
+        width: 200px;
+        height: 20px;
+        background: blueviolet;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .dropzone.dragover {
+        background-color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dropzone">
+      <div id="draggable" draggable="true">This div is draggable</div>
+    </div>
+    <div class="dropzone"></div>
+
+    <script>
+      document.addEventListener("dragenter", (event) => {
+        // highlight potential drop target when the draggable element enters it
+        console.log(event.target,'dragenter!');
+        if (event.target.classList.contains("dropzone")) {
+          event.target.classList.add("dragover");
+        }
+      });
+
+      document.addEventListener("dragleave", (event) => {
+        // reset background of potential drop target when the draggable element leaves it
+        if (event.target.classList.contains("dropzone")) {
+          event.target.classList.remove("dragover");
+        }
+      });
+    </script>
+  </body>
+</html>

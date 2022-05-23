@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子中的图片根据盒子大小改变</title>
+    <style>
+        body{
+            /* background: url("./img/background.jpg") no-repeat; */
+            /* height:100%;
+            width:100%;
+            overflow: hidden; */
+            /* 或者background-size:100%; */
+            /* background-size:cover; */
+            /* background: turquoise; */
+
+            /*加载背景图*/
+            background-image: url("C:/Users/huilong.zhang/Desktop/SH/html代码/img/littleBackground.png");
+            /* background-image: url("./img/background.jpg"); */
+            /* 背景图垂直、水平均居中 */
+            background-position: center center;
+            /* 背景图不平铺 */
+            background-repeat: no-repeat;
+            /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-attachment: fixed;  
+            /* //此条属性必须设置否则可能无效/ */
+            /* 让背景图基于容器大小伸缩 */
+            background-size: cover;
+            /* 设置背景颜色，背景图加载过程中会显示背景色 */
+            background-color: #CCCCCC;
+
+        }
+        .picDiv {
+            width: 200px;
+            height: 200px;
+            background: turquoise;
+            /* width: 100%;
+            height: 1000px;
+            background: url('./img/background.jpg'); */
+            /* background-size: cover; */
+            /* background: turquoise; */
+        }
+    </style>
+</head>
+<body>
+    <div class="picDiv"></div>
+    <img src="./img/littleBackground.png" alt="">
+</body>
+</html>

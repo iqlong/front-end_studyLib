@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+function show(x){
+　　alert(x);
+    alert('xxx')
+}
+
+setInterval(show('就一次'),1000);　　//只会弹出一次，调用setInterval函数，
+　　　　　　　　　　　　　  　//传递给它的两个参数一个是show（）函数的返回值，
+                                 //一个是1000ms，因此只会执行show函数一次
+
+setInterval(show,1000);       //调用setInterval函数，将函数show和1000ms作为
+　　　　　　　　　　　　　　  //参数分别传递给它，每隔一段时间便执行show函数
+</script>
+</html>

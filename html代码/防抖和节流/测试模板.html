@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="text">
+  <script>
+    // 节流函数
+    const deFlow=(cb) => {
+      let id=true;
+      return () => {
+        if(id){
+          cb();
+          id=false;
+          // flag=!flag;
+        }
+        if(!id){
+          id=setTimeout(()=>{
+            id=false;
+          },1000)
+        }
+      }
+    }
+    document.querySelector('input').addEventListener('input',deFlow(()=>{
+      console.log('我被截留了',this)
+
+    }))
+  </script>
+</body>
+</html>

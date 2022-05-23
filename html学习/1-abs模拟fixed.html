@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+ 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 去除视口的默认滚动，注意100%的使用 */
+        body,html {
+            height: 100%;
+            /* overflow: hidden; */
+        }
+        .abForFix {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+        
+    </style>
+</head>
+ 
+<body>
+    <!-- 接下来要写的就是c3中的光斑效果 和 过度和动画的使用  -->
+    <div style="overflow: auto;height: 100%;">
+        <div class="abForFix"></div>
+        <div style="width: 10px; height:3000px;">
+        </div>
+    </div>
+    
+ 
+</body>
+ 
+</html>

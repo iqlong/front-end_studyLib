@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子代-伪类</title>
+    <style>
+        /* 奇数段 */
+        p:nth-of-type(2n+1) {
+            color: red;
+        }
+
+        /* 偶数段 */
+        p:nth-of-type(2n) {
+            color: blue;
+        }
+
+        /* 第一段 */
+        p:nth-of-type(3) {
+            font-weight: bolder;
+        }
+        div>:nth-child(1){
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>这段不参与计数。</div>
+        <p>这是第一段。</p>
+        <p>这是第二段。</p>
+        <div>这段不参与计数。</div>
+        <p>这是第三段。</p>
+        <p>这是第四段。</p>
+    </div>
+</body>
+</html>

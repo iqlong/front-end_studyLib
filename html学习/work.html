@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>联系手写html</title>
+        <style>
+            .outer a:first-child {
+                color: white;
+            }
+            div#headTip {
+                /* color: turquoise; */
+            }
+            #headTip:after {
+                content: '';
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border: 8px solid transparent;
+                border-left: 8px solid #AFABAB;
+                position: relative;
+                top: 2px;
+                left: 10px;
+            }
+            [id='headTip'] {
+                background-color: turquoise;
+            }
+            /* :hover {
+                color: violet;
+            } */
+            #headTip ~  {
+                background-color: yellowgreen;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="headTip" style="position: relative; left: 50%;;top: 50%;">我是头部</div>
+        <div class="outer">
+            <div > jkjk</div>
+
+            <a href="#footer">回到底部</a>
+
+
+        </div>
+        <center>
+            jkdlfjslfdfsf
+            法大师傅大师傅
+            法律监督分类结果
+            fjlskjfdl
+            <!-- <div style="width: 30px;height: 1500px;background-color: blanchedalmond;"></div> -->
+
+        </center>
+        <a href="#headTip" id="footer" style="color: blue;">回到顶部</a>
+        <iframe src="fram.html" frameborder="1"></iframe>
+        <a href="mailto: zhanghuilong@qq.com" id="footer">联系我们</a>
+        <label for="in">fd</lable> <input type="text" name="in" id="input">
+
+        <label for="SSN">Social Security Number:</label>
+<input type="text" name="SocSecNum" id="SSN" />
+            <input type="number" max="29" min="18">
+            <form action="">
+                <input type="text">
+            </form>
+            <form action="">
+                <input type="text">
+            </form>
+
+    </body>
+</html>

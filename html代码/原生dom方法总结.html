@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生操作dom方法对于text的处理</title>
+</head>
+<body>
+    <div class="outer">
+        我是gai溜子
+        <div class="inner">我是inner</div>
+    </div>
+    <script>
+        // 其中有的 --- 操作DOM方法
+        //     父节点找子节点：  Node.children   Node.childNodes
+                    //会匹配换行和空格信息var getFirstChild = document.getElementById("test").firstChild;
+                    //不会匹配换行和空格信息var getFirstChild = document.getElementById("test").firstElementChild;
+        //     子节点找父节点：  parentNode      parentElement      offsetParent   
+             
+    </script>
+</body>
+</html>
