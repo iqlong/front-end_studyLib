@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2468051a-1347-410b-9116-aa9426ad3c6b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/JS代码/es6/proxy&amp;reflect/各种数据类型的proxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS代码/es6/proxy&amp;reflect/各种数据类型的proxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS代码/js_api侠/asyncTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS代码/js_api侠/asyncTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS代码/js_api侠/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS代码/js_api侠/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS代码/杂谈/async.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS代码/杂谈/async.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS代码/杂谈/加入async的eventLoop.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS代码/杂谈/加入async的eventLoop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html代码/承载js的html/事件/自定义事件.html" beforeDir="false" afterPath="$PROJECT_DIR$/html代码/承载js的html/事件/自定义事件.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="278LhUZ8FzslJr2ONJ0Ir8wBV3C" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vueStudy/数字马力" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="ts.external.directory.path" value="D:\360安全浏览器下载\WebStorm 2021.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\vueStudy\数字马力" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\JS代码\es6" />
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\html代码\防抖和节流" />
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\JS代码\异步编程问题" />
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\html代码\伪类" />
+      <recent name="C:\Users\张慧龙\Desktop\用于学习的demo库\html代码\h5\webWorker" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.各种数据类型的proxy.js">
+    <configuration name="asyncTest.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS代码/js_api侠/asyncTest.js" working-dir="$PROJECT_DIR$/JS代码/js_api侠">
+      <method v="2" />
+    </configuration>
+    <configuration name="async.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS代码/杂谈/async.js" working-dir="$PROJECT_DIR$/JS代码/杂谈">
+      <method v="2" />
+    </configuration>
+    <configuration name="加入async的eventLoop.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS代码/杂谈/加入async的eventLoop.js" working-dir="$PROJECT_DIR$/JS代码/杂谈">
+      <method v="2" />
+    </configuration>
+    <configuration name="map.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS代码/js_api侠/map.js" working-dir="$PROJECT_DIR$/JS代码/js_api侠">
+      <method v="2" />
+    </configuration>
+    <configuration name="各种数据类型的proxy.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS代码/es6/proxy&amp;reflect/各种数据类型的proxy.js" working-dir="$PROJECT_DIR$/JS代码/es6/proxy&amp;reflect">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.各种数据类型的proxy.js" />
+        <item itemvalue="Node.js.加入async的eventLoop.js" />
+        <item itemvalue="Node.js.asyncTest.js" />
+        <item itemvalue="Node.js.map.js" />
+        <item itemvalue="Node.js.async.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2468051a-1347-410b-9116-aa9426ad3c6b" name="Default Changelist" comment="" />
+      <created>1648696886225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648696886225</updated>
+      <workItem from="1648696887456" duration="3506000" />
+      <workItem from="1648758180698" duration="6450000" />
+      <workItem from="1648887850446" duration="31072000" />
+      <workItem from="1649125553604" duration="6428000" />
+      <workItem from="1649318433695" duration="6375000" />
+      <workItem from="1649603425438" duration="23026000" />
+      <workItem from="1649854504942" duration="685000" />
+      <workItem from="1649902280962" duration="33163000" />
+      <workItem from="1650456691578" duration="341000" />
+      <workItem from="1650523635188" duration="13185000" />
+      <workItem from="1650620404116" duration="21475000" />
+      <workItem from="1651048728686" duration="1613000" />
+      <workItem from="1651067888164" duration="591000" />
+      <workItem from="1651249951459" duration="612000" />
+      <workItem from="1651251404839" duration="10000" />
+      <workItem from="1651251439774" duration="1267000" />
+      <workItem from="1651479857113" duration="1595000" />
+      <workItem from="1651493307968" duration="4546000" />
+      <workItem from="1651803756990" duration="2534000" />
+      <workItem from="1652018869284" duration="5846000" />
+      <workItem from="1652152886099" duration="24000" />
+      <workItem from="1652282292667" duration="835000" />
+      <workItem from="1652848666484" duration="19027000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/vueStudy/sixthText.js" />
+      </list>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/数据结构的实现/单链表1.js</url>
+          <line>65</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/数据结构的实现/单链表1.js</url>
+          <line>66</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/数据结构的实现/单链表1.js</url>
+          <line>73</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/数据结构的实现/单链表1.js</url>
+          <line>76</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/异步编程问题/async的使用/mdn第一个示例.js</url>
+          <line>20</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/异步编程问题/promise的使用/promise的合并.js</url>
+          <line>14</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/异步编程问题/promise的使用/promise的合并.js</url>
+          <line>15</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/JS代码/模块化学习/esm/import.mjs</url>
+          <line>6</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
