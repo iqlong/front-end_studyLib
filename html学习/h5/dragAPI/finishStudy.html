@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 50px;
+            height: 50px;
+        }
+        img.dragging{
+            opacity: 0.3;
+        }
+        .dropVessel.droppable{
+            background-color: aquamarine;
+        }
+        .dropVessel{
+            border: 2px ridge rgb(10, 42, 129);
+            height: 80px;
+            width: 80px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .dragAndDrop{
+            user-select: none;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 初始拖拽元素就在一个drop容器，可以移动向另外的两个容器 -->
+    <section class="dragAndDrop">
+        <div class="dropVessel"></div>
+        <div class="dropVessel"></div>
+        <div class="dropVessel">
+            <img src="https://iqlong.github.io/staticBysj/%E6%8A%A0%E9%BC%BB%E5%B1%8E.jpg"
+                draggable="true" alt="抠鼻屎照片">
+
+        </div>
+    </section>
+    <script>
+        const img = document.querySelector('img')
+        const outVessel = document.querySelector('.dragAndDrop')
+        img.addEventListener('dragstart',(e) => {
+            e.target.classList.add('dragging')
+            // e.dataTransfer.setData('dragEle','dra')
+        })
+        outVessel.addEventListener('dragover',(e) => {
+            e.preventDefault();
+            // e.target.classList.add('droppable')
+            if(!e.target.classList.contains('dropVessel')){
+                e.dataTransfer.dropEffect ='none'
+            }
+        })
+        outVessel.addEventListener('dragenter',(e) => {
+            console.log(e.target);
+            e.target.classList.add('droppable')
+        })
+        outVessel.addEventListener('dragleave',(e) => {
+            e.target.classList.remove('droppable')
+
+        })
+        outVessel.addEventListener('drop',(e) => {
+            if(e.target.classList.contains('dropVessel')){
+                console.log('drop');
+                e.target.appendChild(img);
+                e.target.classList.remove('droppable')
+            }else{
+                e.dataTransfer.dropEffect ='none'
+            }
+            console.log(e.dataTransfer.dropEffect);
+        })
+        img.addEventListener('dragend',(e) => {
+            console.log('dragend');
+            e.target.classList.remove('dragging')
+        })
+    </script>
+</body>
+</html>
