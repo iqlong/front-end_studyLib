@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式-js版本</title>
+</head>
+<body>
+    <div id="login">登录</div>
+    <script>
+        let login = document.getElementById('login');
+
+        let createBtn = function() {
+            let div = document.createElement('div');
+            div.innerText='我是弹窗';
+            div.style.display = 'none';
+            login.appendChild(div);
+            // 没想到要返回div
+            return div;
+        };
+        // 点击登录登录窗口,会弹出一个框，但是框只有且只存在一个
+        let getSingle = function (fn) {
+            let result;
+            return () => {
+                return result || (result = fn.apply(this, arguments));
+            }
+        };
+        let create =  getSingle(createBtn);
+        document.getElementById('login').onclick = function() {
+            let loginDiv = create();
+            loginDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

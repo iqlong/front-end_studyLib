@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖的实现</title>
+</head>
+<body>
+    <input type="text" class="needDebounce">
+    <script>
+        // 防抖就是：出发事件就会设置一个计时器,若计时器没跑完就来了下一次事件
+            // 那么，计时器会重新即使,知道计时器跑完才会执行函数
+        let debounceInput = document.querySelector('.needDebounce');
+        function debounce(delay,val) {
+            let timeId;
+            return function() {
+                // 下一次开启定时器前会清除上一次的计时器
+                    // 闭包保留下来了上一次的计时器id
+                // console.log('开始id：',timeId);
+                if(timeId) {
+                    // console.log('第一次清楚的id：',timeId);
+                    clearTimeout(timeId);
+                }
+                timeId = setTimeout( () => {
+                    console.log(val);
+                }, delay);
+                // console.log('第一次id：',timeId);
+            }
+        };
+        // 就是要注意这个要写在事件函数的外面，不然每次都会重新执行外部函数
+        let retFunc = debounce();
+        debounceInput.onkeyup=function(event) {
+            // console.log(event.target.value);
+            //
+            debounce(1000, event.target.value)()
+
+        }
+    </script>
+</body>
+</html>
