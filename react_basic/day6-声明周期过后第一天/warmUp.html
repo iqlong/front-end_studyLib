@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <title>在学react</title>
+</head>
+<body>
+    <!--// 三个api的使用：babel用在script标签中  reactDom使用在渲染上，react.Component用在创建react上-->
+    <script type="text/babel">
+        class Person extends React.Component{
+            // aim: 对比key在diff算法中的区别
+            state={
+                persons: [
+                    {
+                        name: 'xz',
+                        age: 20
+                    },{
+                        name: 'xh',
+                        age: 29
+                    },{
+                        name: 'zz',
+                        age: 20
+                    }
+                ]
+            }
+            // jsx写法
+            render(){
+                return (
+                    <div>
+
+                    </div>
+                )
+            }
+        }
+    </script>
+</body>
+</html>

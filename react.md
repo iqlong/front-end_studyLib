@@ -12,7 +12,7 @@
 
 ### 虚拟Dom创建的两种方式
 
-+ ***使用 jsx 创建虚拟dom***
++ cc***使用 jsx 创建虚拟dom***
   
   + 全称： JavaScriptHtml------ react定义的类似XML的js扩展语法
 + ***使用js创建 --- React.createElement()***
@@ -142,3 +142,22 @@
 >    1. 受控组件 和 非受控组件
 >    2. 高阶函数_函数的柯里化
 > 4. vscode中的折叠小技巧： // #region             // #endregion
+
+#### HOC 高阶组件在react中和再vue中的实现
+
+- Vue中，可以利用 mixins 和 对象中返回一个对象来实现： 利用$slots $attrs $listeners $props来个包裹的组件绑定
+
+  1. mixins是将组件中的方法，不包括dom结构的混入；
+
+     所以让这种方法的实现是一种 --- 侵入式的HOC实现方式
+
+  2. 利用$属性，再包裹的组件拿到，父组件的传入，  渗透
+
+### react 中的diff算法浅析
+
+#### 宽脑门的思想
+
+1. ***diff算法需要考虑的几种情况***            结构上就是考虑dom树的变化
+   + dom属性的变化
+   + dom的增删
+   + dom的移动
