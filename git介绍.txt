@@ -1,0 +1,54 @@
+git     
+    下载安装 git --version
+    注册gitee账号
+    一个本地仓库对应一个远程仓库,
+    第一次提交的时候需要设置当前用户
+    >git config --global user.name "willsonkang1"
+    >git config --global user.email "2681091754@qq.com"
+1.个人使用
+    远程仓库 --gitee
+    本地仓库--文件夹
+    1.先有远程仓库，再有本地仓库
+        1.在gitee上新建仓库
+        2.在本地新建文件夹
+        3.将远程仓库得代码克隆到本地文件夹
+         >git clone https://....git
+        4.编写代码
+        5.将代码提交到本地仓库
+            git add * 追踪文件
+            git commit -m '[kangjie]第一次提交/修改了' 提交到本地仓库
+            如果报错配置用户名密码  
+                >git config --global user.name "willsonkang1"
+                >git config --global user.email "2681091754@qq.com"
+            git push origin master  提交到远程仓库
+    2.先有本地仓库，再有远程仓库
+        1.在本地新建文件夹
+        2.编写代码
+        3.新建远程仓库
+        4.将本地得文件夹初始化到本地仓库
+            >git init
+        5.将代码提交到本地仓库 （开始跟踪管理项目中的任何一个文件）
+            >git add *
+        6.编写提交信息
+            >git commit -m '[康杰]第一次修改'
+        7.绑定本地仓库与远程仓库
+              git remote add origin https://...git
+        8.提交到远程仓库    
+             git push origin master
+    3.版本回退
+        >git status查看状态
+        >git log 查看提交日志
+        >git reflog 查看所有提交日志
+        >git reset --hard commitID(一般取前五位即可) 回退到某次提交
+2.团队项目
+    1.新建远程仓库
+    2.邀请合作者
+        管理--仓库成员管理 ->邀请用户--直接添加(通过邮箱)
+    3.被邀请者在邮箱进行同意
+    4.进行多人开发
+        git clone 
+        团队代码编写
+            git add *
+            git commit -m '[康杰]第一次提交'
+            **********很重要git pull origin master(更新远程仓库到本地)
+            git push origin master(提交本地仓库到远程)
