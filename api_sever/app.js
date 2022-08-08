@@ -3,7 +3,7 @@ const express = require('express')
 // 创建 express的服务器实例
 const app = express();
 // 配置以解决跨域问题
-const cors = require('cors')
+// const cors = require('cors')
 
 const userRouter = require('./router/user')
 const joi = require('joi')
@@ -14,7 +14,7 @@ const configJwt = require('./config')
 const formidable = require('express-formidable')
 
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 
@@ -44,6 +44,11 @@ app.use(userRouter);
 
 // 解决遇到错误不让服务停止的中间件
 app.use((err,req,res,next) => {
+    if(err){
+        res.send({data:err,msg:'错误级别中间件捕获的错误'})
+        return
+    }
+
     // 验证失败的错误
     if(err instanceof joi.ValidationError) {
        return res.cc(err);
@@ -55,8 +60,8 @@ app.use((err,req,res,next) => {
     // next();
 })
 
-app.listen(80, () => {
-    console.log('Express server running at http://localhost')
+app.listen(808, () => {
+    console.log('Express server running at http://localhost:808')
 })
 
 

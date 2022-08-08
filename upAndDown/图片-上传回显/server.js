@@ -22,12 +22,13 @@ app.use((err, req, res, next) => {
 })
 
 // 上传文件的接口
-app.post('/uploadFile', (req, res) => {
+app.post('/uploadFile',multer().none(), (req, res) => {
     // throw new Error('g')
     // 上传的文件信息
-    console.log('@',req.files[0]);
-    const files = req.files[0];
-    // 需要用的的两个files的东西
+    console.log('g',req.files,req.file,req.body)
+    // console.log('@',req.files[0],req.file,req.body);
+    // const files = req.files[0];
+    // // 需要用的的两个files的东西
     let paths = path.join(__dirname,'/uploadedFile',files.originalname);
     console.log(paths)
     fs.readFile(files.path, (err, data) => {
@@ -56,6 +57,6 @@ app.post('/test', (req, res) => {
     res.send('调用了')
 })
 
-app.listen(80, () => {
+app.listen(802, () => {
     console.log('express running at http://localhost:80');
 })

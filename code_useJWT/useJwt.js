@@ -18,6 +18,10 @@ app.use(express.urlencoded({extended: false}))
 // app.use()
 
 app.use((err,req,res,next) => {
+    if(err){
+        res.send({data:err,msg:'错误级别中间件捕获的错误'})
+        return
+    }
     if(err.name === 'UnauthorizedError') {
         return res.send({status: 401, message: '无效的token'});
     }
@@ -26,16 +30,20 @@ app.use((err,req,res,next) => {
 
 // 登录接口
 app.post('/api/login', (req, res) => {
+    // 每次返回的token都是不一样的
     const tokenStr = jwt.sign({student: 'zhl'}, secretKey, {expiresIn: '60s'});
+    console.log(tokenStr,req);
     res.send({
         status: 200,
         message: '登录中...',
-        token: tokenStr
+        token: tokenStr,
+        // req: req
     })
 })
 
 // 获取信息接口
 app.get('/admin/getInfo', (req, res) =>{
+    throw new Error('cuol ')
     console.log(req.user, req);
     res.send(req.user);
 })

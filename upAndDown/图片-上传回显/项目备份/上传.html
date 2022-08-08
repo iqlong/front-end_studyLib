@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="file" name="file" accept=".jpg, .jpeg, .png" onclick="changeImage(event)">
+<input class="btn" type="button" @click="register" value="注 册"><br>
+<script>
+    //获取文件
+    function changeImage (e) {
+        var file = e.target.files[0]
+        this.file = file
+    },
+    //注册
+    function register() {
+        let formData= new FormData();
+        formData.append('username', this.username);
+        formData.append('password', this.password1);
+        formData.append("avatar", this.file);
+        console.log(formData.get('avatar'))
+        //请求头
+        let config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        //axios的post请求
+        this.$axios.post('/reg',formData,config).then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err);
+</script>
+</body>
+</html>

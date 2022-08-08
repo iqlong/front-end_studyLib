@@ -69,6 +69,7 @@ function loginHandler(req, res){
 }
 
 function getInfo(req, res) {
+    throw new Error('cuol ')
     console.log(req.user)
     res.send(req.user);
 }

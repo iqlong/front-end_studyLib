@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: false}))
 
 // ******  req.body可以获取 json 的表单数据和 url-encoded 格式的数据
 app.post('/login', (req, res) => {
+    console.log('g')
     res.send(req.body);
     // 通过这个属性来查看请求体的数据
     // res.send(req.body);
@@ -28,7 +29,7 @@ app.post('/login', (req, res) => {
 // })
 
 
-app.listen(80, () => {
+app.listen(808, () => {
     console.log('server running at http://localhost')
 })
 
