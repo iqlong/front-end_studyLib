@@ -1,0 +1,1 @@
+let xxx: string = undefined;
