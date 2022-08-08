@@ -1,0 +1,26 @@
+草稿	vue day02 ppt的第二章
+
+二、
+    1.事件机制
+      事件传参
+      	<button @click="clickHanderler('hello',$event></button>
+	clickHandler(msg,e) {
+	    console.log(msg,e);
+	}
+	1) 当调用clickHandler时，假如没有传参，函数内部第一个参数
+	   就是event事件处理函数
+	2) 当调用时传入自定义参数，$event就是事件处理对象的实参
+	3) 调用时的实参和声明时的形参要一一对应
+
+    2.事件修饰符
+    	.prevent
+	      阻止事件的默认行为（比如说点击a标签的自动跳转）
+	.stop
+	      停止事件冒泡
+	.self
+	      只有当event.target是元素本身时，才出发绑定的事件处理函数
+	.capture
+	      是在事件捕获阶段执行事件处理函数
+	.passive
+	      @scroll.passive
+	      先让滚动元素产生滚动，在。。。

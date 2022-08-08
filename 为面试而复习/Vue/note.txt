@@ -1,0 +1,820 @@
+Vue-数据驱动框架
+一、
+  1.介绍
+    作者：尤雨溪
+    渐进式框架：根据自身需求，选择框架的中的工具,VUE不强求你一次性接受并使用它的全部功能特性
+    特点：易上手，渐进式，灵活性强
+    数据驱动
+                           打扫卫生
+                  原生JS   人工使用扫把清洁   
+      dom驱动框架：jQuery   戴森吸尘器
+      数据驱动框架：Vue     雇了个保姆
+  2.MVVM(一种软件架构模式)
+    Modal     数据模型
+    View      视图层
+    ViewModal 视图模型
+  3.安装
+  4.生命周期
+    beforeCreate (创建阶段)
+      初始化生命周期相关属性以及事件，但是访问不到vue实例对象
+    created (创建阶段)
+      vue实例对象初始化完毕，可以访问实例中的数据或者方法
+    beforeMount (挂载阶段)
+      模板解析完成，但是数据还未绑定到模板上
+    mounted (挂载阶段)
+      完成了模板解析，以及模板数据的动态绑定
+    beforeUpdate (更新阶段)
+      完成了虚拟dom节点的更新，但是页面没有更新
+    updated (更新阶段)
+      页面重新渲染，更新完毕
+    beforeDestroy (销毁阶段)
+      销毁之前，此时还可以访问vue实例对象
+    destroyed (销毁阶段)
+      移除了子组件、监听器，vue实例对象销毁完毕
+  5.模板语法
+    文本插值
+      {{ message }} 双大括号
+    指令
+      v-html
+        加载html代码片段
+      v-bind:id
+        动态绑定属性
+        简写： :属性名="变量名"
+      v-on:click
+        简写 @click
+    条件渲染
+      v-if v-else
+      v-show
+      异同点
+        同：作用相同，都可以将块级元素隐藏
+        异：v-if v-else 该条件在判定失败时，不进行dom的构建
+            v-show      改条件在判定失败时，dom节点真实存在，只是通过css样式：display：none,将该dom节点隐藏
+        业务场景：频繁切换元素的显示与隐藏
+          用v-show比较好
+          v-if频繁的使dom树进行加载更新，会占用大量内存，影响代码的执行效率
+    列表渲染
+      v-for
+        v-for="item in resData"
+        <tr v-for="item in resData" >
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+    class绑定
+      :class
+        <div :class="{ active: isActive}">hello vue</div>
+        <div :class="[{active:true}, {active2:true}]">hello vue</div>
+        <div :class="['active', 'active2']">hello vue</div>
+        <div :class="[isActive?{active:true}:'', {active2:true}]">hello vue</div>
+    style绑定
+      :style
+二、
+  1.事件机制
+    事件传参
+      <button @click="clickHandler('hello',$event)">按钮</button>
+      clickHandler(msg,e) {
+        console.log(msg,e);
+      }
+      当调用clickHandler时，假如没有传参，函数内部第一个参数就是event事件处理对象
+      当调用时传了自定义参数，$event就是事件处理对象的实参
+      调用时的实参和声明时的形参要一一对应
+    事件修饰符
+      .prevent
+        阻止事件的默认行为（比如说点击a标签的自动跳转）
+      .stop 
+        停止事件冒泡
+      .self
+        只有当event.target是元素本身时，才触发绑定的事件处理函数
+      .once 
+        绑定在元素身上的事件处理函数，执行一次后就解绑
+      .capture
+        在事件捕获阶段执行事件处理函数
+      .passive
+        @scroll.passive
+        先让滚动元素产生滚动效果，再执行事件处理函数内部的逻辑
+      按键修饰符
+        @keyup.enter="clickHandler"
+        .enter、.tab、.delete、.esc、.space、.up、.down、.left、.right
+        .ctrl、.alt、.shift、.meta
+      鼠标修饰符
+        @mouseup.left = "mouseupHandler
+        .left、.right、.middle
+  2.表单
+    表单控件通过v-model 来实现双向数据绑定
+    双向数据绑定
+      视图     -> 数据模型( V -> VM -> M )
+        监听input.value发生更改
+        获取input的value
+        将value传递给数据模型中对应的数据字段
+      数据模型 -> 视图层  ( M -> VM -> V )
+        let obj = {}
+        Object.defineProperty(obj, 'msg', {
+          get() {
+
+          },
+          // 核心内容，通过set监听到数据模型中数据的改变
+          // 将改变的数据赋值给视图层对应的标签
+          set(val) {
+            console.log(val)
+            document.getElementById('form_msg').value(val)
+          }
+        })
+        this.obj.msg = 'hello vue'
+    表单控件
+      通过v-model来实现双向数据绑定
+      复选框
+        要有默认值空数组[]
+      修饰符
+        .lazy
+          在表单控件的change事件触发时，再同步数据到数据模型
+        .number
+          将用户输入的数字直接转换为number类型
+        .trim
+          将用户的输入值中，首位的空字符删除掉
+    计算属性
+      computed: {
+        total() {
+          retrun this.a + this.b
+        }
+      }
+      特点：
+        计算属性所依赖的变量发生改变时，计算属性就会重新计算，即重新调用函数再次执行
+        假如计算属性中内部运算复杂事，计算属性就会占用很多资源
+    监听属性
+      watch: {
+        a(newValue,oldValue) {
+          
+        },
+        obj: {
+          handler: (newValue,oldValue) => {
+
+          },
+          // 最关键的点
+          deep: true
+        }
+      }
+三、组件机制
+  1.概述
+    组件是拓展的html元素，封装了可复用的代码片段
+    封装了html代码片段，以及绑定在元素上的css样式表，还有绑定在元素上的js处理逻辑
+  2.组件定义
+    let myComponent = {
+      data() {
+        return {
+          name: '张三'
+        }
+      },
+      template: `
+        <button @click="clickHandler">子组件按钮{{name}}</button>
+      `,
+      methods: {
+        clickHandler() {
+          this.name = "李四"
+        }
+      }
+    }
+  3.组价注册
+    1)全局注册
+      Vue.component('my-component',myComponent)
+      全局注册完毕后，在整个项目中的任何一个页面或者组价内部都可以调用
+    2)局部注册
+      组件的局部注册同样有局部作用域，在哪里注册，就在哪里使用
+      子组件内部，同样可以使用components来局部注册组件
+      new Vue({
+        el: "#app",
+        data:{},
+        components: {
+          'my-component': myComponent
+        }
+      })
+  4.组件交互
+    1)父组件向子组件传参
+      通过props属性来传参
+      动态传参
+        加 : 
+          变量、Number、Boolear、Object、Array、Function、
+        不加:
+          传String类型字符串
+      <my-component data="给你100块"></my-component>
+      let myComponent = {
+        props:[ 'data' ],
+        data(){
+          retrun
+        },
+        template:`
+          <button>{{data}}</button>
+        `
+      }
+      校验
+        类型校验
+          props: {
+            data: String
+          }
+          // 多类型
+          props: {
+            data: [ String, Number ]
+          }
+        是否为必须传参值
+          props: {
+            data: {
+              type: String,
+              require: true
+            }
+          }
+        设置默认值
+          基本数据类型
+            props: {
+              data: {
+                type: String,
+                default: '我是参数默认值'
+              }
+            }
+          引用数据类型
+            props: {
+              data: {
+                type: Object,
+                default() {
+                  retrun {
+                    name: '张三',
+                    age: 12
+                  }
+                }
+              }
+            }
+        自定义校验规则
+          props: {
+            data: {
+              type: Number,
+              validator(val) {
+                retrun val < 50
+              }
+            }
+          }
+    2)子组件向父组件传参
+      <my-component @son-handler="fatherHandler"></my-component>
+
+      let myComponent = {
+        data(){
+          retrun{
+            msg: '我是子组件中的数据'
+          }
+        },
+        template:`<button @click="clickHandler"></button>`,
+        methods:{
+          clickHandler(){
+            // 向父组件发射事件
+            this.$emit('son-handler',this.msg)
+          }
+        }
+      }
+      // vue实例（父组件）
+      new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+          fatherHandler(value){
+            console.log(value);
+          }
+        }
+      })
+    3)单向数据流
+      父组件内部数据的改变，通过props流到子组件中，子组件中对应的数据也响应改变
+      反过来就不行
+      防止子组件意外修改父组件中的状态，导致其他组件应用的数据发生混乱
+  5.插槽
+    1)普通插槽
+      父组件使用
+        <div id="app">
+          <my-component>
+            你好插槽
+            <div>插槽</div>
+          </my-component>
+        </div>
+      子组件声明
+        template:`
+          <div>
+            <button>组件按钮</button>
+            // slot标签位置就是插槽
+            <slot></slot>
+          </div>
+        `
+    2)具名插槽
+      父组件使用
+        <div id="app">
+          <my-component>
+            <template v-slot:slot1>
+              <div>插槽一传入值</div>
+            </template>
+            <template #slot2>
+              <div>插槽二传入值</div>
+            </template>
+          </my-component>
+        </div>
+      子组件声明
+        template:`
+          <div>
+            <button>组件按钮</button>
+            // slot标签位置就是具名插槽
+            <slot name="slot1"></slot>
+            <slot name="slot2"></slot>
+          </div>
+        `
+    3)作用域插槽
+      父组件使用
+        <div id="app">
+          <my-component>
+            <template v-slot:slot1="scope">  // scope就是传递上来的作用域对象
+              {{scope.data}}
+              {{scope.msg}}
+              <div>插槽一传入值</div>
+            </template>
+            <template #slot2>
+              <div>插槽二传入值</div>
+            </template>
+          </my-component>
+        </div>
+      子组件声明
+        data(){
+          retrun {
+            msg: '我是组件中的数据'
+          }
+        },
+        template:`
+          <div>
+            <button>组件按钮</button>
+            // slot标签位置就是具名插槽
+            <slot name="slot1" data="插槽传入数据" :msg="msg"></slot>
+            <slot name="slot2"></slot>
+          </div>
+        `
+  6.动态组件
+    let component1 = {}
+    let component2 = {}
+    // 动态组件的调用
+    <button @click="currentComponent = 'component1'">按钮1</button>
+    <button @click="currentComponent = 'component2'">按钮2</button>
+
+    <component is="component1"></component>
+    <component :is="currentComponent"></component>
+    new Vue({
+      data() {
+        retrun {
+          currentComponent: component1
+        }
+      }
+    })
+四、可复用技术
+  1.混入
+    混入是非常灵活的技术，用来分发Vue 组件中的可复用功能
+    混入规则：
+      1)数据内部会进行递归合并，发生冲突时，组件内部的数据优先
+      2)同名的钩子函数会合并为一个数组，并且钩子函数都会执行，混入钩子先调用，
+      组件钩子后调用
+      3)值为对象时，components、methods，将会被合并为一个对象，发生冲突是，组件内部的
+      数据优先
+    局部混入
+      let mixin = {}
+      new Vue({
+        mixins: [mixin]
+      })
+    全局混入
+      Vue.mixin(mixin)
+  2.自定义指令
+    let myDirective = {
+      // 1.指令第一次绑定到元素上时调用
+      bind(el,binding,vnode,oldVnode){
+
+      },
+      // 2.被绑定元素插入父节点上时调用
+      inserted(el,binding,vnode,oldVnode){
+
+      },
+      // 3.被绑定元素，vnode更新时调用
+      update(el,binding,vnode,oldVnode){
+
+      },
+      // 4.被绑定元素或者组件，vnode更新完毕后调用
+      componentUpdated(el,binding,vnode,oldVnode){
+
+      },
+      // 5.指令解绑时调用
+      unbind(el,binding,vnode,oldVnode){
+
+      }
+    }
+    // 参数
+      el: 当前绑定的元素
+      binding: 当前指令对象
+      vnode:   Vue编译时，产生的虚拟节点
+      oldVnode: 更新或者更新完毕后，能够获取到的上一个虚拟节点，仅在updata和componentUpdated这两个钩子中可以调用
+  3.过滤器
+    声明：
+      let fmtTime = (time) => {
+        retrun new Date(time).toLocaleString();
+      }
+    注册
+      全局注册
+        Vue.filter('fmtTime',fmtTime)
+      局部注册
+        new Vue({
+          filters:{
+            fmtTime(time) {
+              retrun new Date(time).toLocaleString();
+            }
+          }
+        })
+    使用方式
+      1) {{ data | fmtTime }}
+      2) <div :title="title | fmtTitle"></div>
+    
+  4.render渲染函数
+  5.plugin插件
+
+五、Vue-Router路由管理器
+  1.基本使用
+    1)声明组件
+      let ComponentA = {}
+      let ComponentB = {}
+    2)定义路由
+      let router = new VueRouter({
+        routes: [
+          { path: '/', redirect: '/a' },
+          { path: '/a', name:'RouterA', component: ComponentA, alias: '/A' },
+          { path: '/b', component: ComponentB },
+        ]
+      })
+    3)注册路由
+      new Vue({
+        el: "#app",
+        router: router
+      })
+    4)使用路由
+      <div id="app">
+        // 组件跳转的链接
+        <router-link to="/a">跳转至组件A</router-link>
+        <router-link to="/b">跳转至组件B</router-link>
+        // 组件显示的区域
+        <router-view></router-view>
+      </div>
+  2.动态路由
+    <router-link to="/a/1/name/zhangsan">跳转至组件A</router-link>
+    { path: '/a/:id/name/:name', component: ComponentB }
+    在A组件内部
+      created(){
+        this.$route.params  // { id:1, name: 'zhangsan' }
+      }
+    路由参数发生变化做出相应
+      1)
+        watch: {
+          // msg(newValue, oldValue) {
+
+          // },
+          $route(to,from) {
+            // console.log(to,from);
+            this.id = to.params.id
+            this.name = to.params.name
+          }
+        }
+      2)组件内部的导航守卫
+        beforeRouteUpdate(to,from,next) {
+          // console.log(to,from,next);
+          this.id = to.params.id
+          this.name = to.params.name
+          next();
+        }
+  3.路由守卫
+    1)全局守卫
+      let router = new VueRouter({})
+      全局前置守卫
+        router.beforeEach((to,from,next) => {
+          console.log(to,from);
+          next();
+        })
+      全局后置守卫
+        router.afterEach((to,from,next) => {
+          console.log(to,from);
+          next();
+        })
+    2)路由独享守卫
+      在路由对象内部声明它的路由独享守卫
+      {
+        path: '/a',
+        component: ComponentA,
+        beforeEnter(to,from,next) {
+          console.log(to,from,next);
+          next();
+        }
+      },
+    3)组件内守卫
+      brforeRouteEnter(to,from,next){
+        console.log('路由进入之前');
+        // 进入之前，访问不到组件实例this，当前this指向全局this即window对象
+        next();
+      },
+      beforeRouteUpdate(to,from,next){
+        // 更新时，能够访问组件实例this
+        console.log('组件路由更新');
+        this.id = to.params.id
+        this.name = to.params.name
+        next();
+      },
+      beforeRouteLeave(to,from,next){
+        // 跳转离开时，能够访问组件实例this
+        console.log('路由跳转，离开组件');
+        next();
+      }
+      next(false);  // 该方法可以阻止路由跳转的继续执行
+  4.嵌套路由
+    // 嵌套路由声明
+    routes: [
+      {
+        path: '/index',
+        component: 'ComponentIndex',
+        children: [
+          { path: 'category', component: Category },
+          { path: 'article', component: Article }
+        ]
+      }
+    ]  
+    // 使用
+    let ComponentIndex = {
+      template: `
+        <div>
+          <router-link to="/index/category">栏目管理</router-link>  
+          <router-link to="/index/article">文章管理</router-link>
+          <div>
+            // 用来切换栏目管理、文章管理的容器
+            <router-view></router-view>  
+          </div>  
+        </div>
+      `
+    }
+  5.编程式导航
+    通过js代码实现路由跳转
+    事件处理函数内部调用
+      this.$router.push('/index');
+      this.$router.push({ path: '/index' });
+      this.$router.push({ name: 'index' });
+      编程式导航传参
+        name 与 params 连用
+          优点：数据传输时比较隐秘
+          缺点：刷新页面后，数据就丢失了
+        path 与 query 连用
+          优点：页面刷新，数据仍然存在
+          缺点：数据传输时，拼接在url地址栏里，数据传输安全性较低
+      this.$router.push({ name: 'index', params: {id:1,name:'张三'} });
+      this.$router.push({ path: '/index', query: {id:1,name:'张三'} });
+      数据获取
+      let ComponentIndex = {
+        template: `
+          <div>组件A内容</div>
+        `,
+        created() {
+          // name跳转就拿params  path跳转就拿query
+          console.log(this.$route);
+        }
+      }
+  6.路由模式
+    hash路由和history路由的区别：
+    1.hash路由在地址栏URL上有#，而history路由没有会好看一点
+    2.进行回车刷新操作，hash路由会加载到地址栏对应的页面，而history路由一般就404报错了
+    （刷新是网络请求，没有后端准备时会报错）。
+    3.hash路由支持低版本的浏览器，而history路由是HTML5新增的API。
+    4.hash的特点在于它虽然出现在了URL中，但是不包括在http请求中，所以对于后端是没有一点影响的，
+      所以改变hash不会重新加载页面，所以这也是单页面应用的必备。
+    5.history运用了浏览器的历史记录栈，之前有back,forward,go方法，之后在HTML5中新增了
+      pushState（）和replaceState（）方法（需要特定浏览器的支持），它们提供了对历史记录进行修改的功能，
+      不过在进行修改时，虽然改变了当前的URL，但是浏览器不会马上向后端发送请求。
+  课后练习
+    swagger: http://47.94.46.113:7788/swagger-ui.html
+    要求：使用vue、vue-router实现登录功能
+          有token跳转至首页，没有token返回登录页面
+六、vuex
+  1.介绍：vuex是专门为vue.js开发的状态管理模式，也叫状态机。
+          vuex就是一个中央存储库，将组件共用的数据、状态进行统一存储
+          方便其他组件的调用
+    场景应用：
+      A组件
+        a数据
+      B组件
+        b数据
+      要求：A组件使用b数据，B组件使用a数据
+
+      通过vuex将a数据、b数据都存到vuex中
+      A组件、B组件都可以按需导入vuex中的数据
+  2.vuex基本使用
+    let store = new Vuex.Store({
+      state:{
+        // 用来存储数据、状态（类似于vue实例内data）
+        timeStamp: 1622510380472,
+        categories:[]
+      },
+      getters: {
+        // 用来返回处理（state中的数据）后的数据、状态（类似于vue实例中的计算属性
+	computed）
+        fmtTime(state) {
+          retrun new Date(state.timeStamp).toLocaleString()
+        }
+      },
+      mutations: {
+        // 突变，用来修改state中的数据、状态
+        // state，payload载荷（参数）
+        changeTimeStamp(state, payload){
+          state.timeStamp = payload
+        },
+        changeCategories(state, payload){
+          state.categories = payload
+        }
+      },
+      actions: {
+        // 动作，用来放置异步操作
+        findAllCategories(context,payload) {
+          $.get('/category/findAll',(res) => {
+            context.commit('changeCategories',res.data)
+          })
+        }
+      }
+    })
+    在vue实例中使用vuex
+    // 从vuex中解构辅助函数
+    let { mapState, mapGetters, mapMutations, mapActions } = Vuex
+    computed: {
+      // 1.获取一
+      msg() {
+        retrun this.$store.state.timeStamp
+      }
+      fmgMsg() {
+        retrun this.$store.getters.fmtTime
+      }
+      // 2.获取二
+      ...mapState(['timeStamp','categories']),
+      ...mapGetters(['fmtTime'])
+    },
+    methods: {
+      ...mapMutations(['changeTimeStamp']),
+      ...mapActions(['findAllCategories'])  
+    },
+    created() {
+      this.findAllCategories()
+    }
+  3.模块化
+    let moduleA {
+      state:{},
+      getters: {},
+      mutations: {},
+      actions: {}
+    }
+    let moduleB {
+      state:{},
+      getters: {},
+      mutations: {},
+      actions: {}
+    }
+    let store = new Vuex.Store({
+      modules: {
+        moduleA,
+        moduleB
+      }
+    })
+    new Vue({
+      el: "#app",
+      data:{},
+      store: store,
+      computed: {
+        ...mapState('moduleA',['name']),
+        ...mapState('moduleB',['age'])
+      },
+      methods: {
+        ...mapMutations('moduleA',['SET_NAME']),
+        ...mapActions('moduleA',['findAll'])
+      },
+      created() {
+        this.findAll()
+      }
+    })
+七、axios
+  1.概念
+    axios是基于promise封装的纯粹的HTTP库，可运行在浏览器和node.js中
+  2.基本使用
+    get方法请求参数放在params中，post方法请求参数放在data中
+    axios默认传参 -> json
+    假如想要传递查询字符串，直接将data中的数据用qs.stringify()转成查询字符串就可以
+    axios({
+      url:'http://203.195.246.58:5588/category/findAll',
+      method: 'GET',
+      params: {},
+      data: {}
+    })
+  3.API
+    实例化
+      let instance = axios.create({
+        baseUrl: 'http://203.195.246.58:5588',
+        method: 'POST'
+      })
+      instance.get('category/findAll')
+    axios.get(url,{ parmas:{ id:1 } })
+    axios.post(url,{name:'zhangsan',age:12},{ headers:{} })
+    Restful风格
+      常用的HTTP动词有下面五个（括号里是对应的SQL命令）
+        GET（SELECT）：从服务器取出资源（一项或多项）。
+        POST（CREATE）：在服务器新建一个资源。
+        PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。
+        PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。
+        DELETE（DELETE）：从服务器删除资源。
+      还有两个不常用的HTTP动词。
+        HEAD：获取资源的元数据。
+        OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。
+      下面是一些例子
+        GET /zoos：列出所有动物园
+        POST /zoos：新建一个动物园
+        GET /zoos/ID：获取某个指定动物园的信息
+        PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）
+        PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）
+        DELETE /zoos/ID：删除某个动物园
+        GET /zoos/ID/animals：列出某个指定动物园的所有动物
+        DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物
+  4.配置参数
+  5.响应结构
+    {
+      data:{},     // 后台接口返回的完整响应数据
+      status: 200  // http请求的状态码
+    }
+  6.配置默认值
+    axios.defaults.baseUrl = 'http://203.195.246.58:5588'
+    axios.defaults.headers.common['Authorization'] = '123123123'
+    axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+  7.拦截器
+    请求拦截器
+      axios.interceptors.request.use(config => {
+        if(config.method == 'post' && config.url != '/user/login') {
+          config.data = qs.stringify(config.data)
+          // console.log(config);
+        }
+      },err => {
+        return Promise.reject(error);
+      })
+    响应拦截器
+      let interceptor = axios.interceptors.response.use(response => {
+        let res = {
+          ...response,
+          data: response.data.data,
+          status: response.data.status,
+          message: response.data.message,
+          timestamp: response.data.timestamp,
+          test: 'hello 拦截器'
+        }
+        // console.log(response);
+        // Do something before response is sent
+        // return response;
+        return res;
+      },error => {
+        // Do something with response error
+        return Promise.reject(error);
+      });
+    拦截器移除
+      axios.interceptors.response.eject(interceptor)
+八、Less
+  1.less
+    Less 是一门 CSS 预处理语言，它扩充了 CSS 语言，增加了诸如变量、混合（mixin）、函数等功能，让 CSS 更易维护、方便制作主题、扩充。
+    Less 可以运行在 Node、浏览器和 Rhino 平台上
+    Less官网：http://lesscss.org/
+    Less中文网：（结合以下两个网站看）
+    http://lesscss.cn/（推荐看这个网站，但翻译不完整）
+    http://less.bootcss.com/（翻译比较完整，但版本过低）
+    less转css
+      cnpm install -g less
+      lessc main.less main.css 
+
+  2.html中使用less
+    <link rel="stylesheet/less" type="text/css" href="./styles/index.less" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js"></script>
+    或者
+    <script src="https://cdn.bootcdn.net/ajax/libs/less.js/3.11.1/less.js"></script>
+  3.变量
+    @width: 10px;
+  4.混入
+    .one();
+    #one();
+  5.嵌套
+    & 表示当前选择器的父级
+    @规则嵌套和冒泡
+  6.运算（Operations）
+    算术运算符 +、-、*、/ 可以对任何数字、颜色或变量进行运算
+  7.函数（Functions）
+    Less 内置了多种函数用于转换颜色、处理字符串、算术运算等
+    boolean(30px-50px)
+  8.命名空间和访问符
+    #one(){
+
+    }
+    #one();
+  9.映射（Maps）
+  10.作用域（Scope）
+  11.注释（Comments）
+  12.导入（Importing）
+
+
+
+
+
+

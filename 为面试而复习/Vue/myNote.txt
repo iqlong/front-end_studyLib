@@ -1,0 +1,62 @@
+5.插槽
+1.
+   1）普通插槽
+   	父组件使用：
+	  <div id='app'> 
+		<my-component>
+		    <div>无论你写的是什么都会放到子组件声明的slot中</div>
+		</my-component>
+	  </div>
+
+
+	子组件声明
+	template: `
+	    <div>
+		<span>没用的东西</span>
+		<slot></slot>
+	    </div>
+	`
+   2）具名插槽
+   3）作用域插槽
+   	具名插槽的基础上： 子组件:data="data"  父组件中: v-slot:zhl="scope"
+		slotProps就是scope  就是传递上来的作用域对象
+
+2.组件插槽的引用
+   
+   动态路由   参数放在this.$route.params
+
+Vuex：
+	new Vue.vuex({
+	    state: {
+	       categories: []
+	    },
+	    geters: {
+		fff(state) {
+		   return state.categories.upperCase()
+		}
+	    },
+	    mutations: {
+		change(state,payload) {
+		   state.categories=payload
+		}
+	    },
+	    actions: {
+		findAll(context,payload) {
+		   $get('/findAllByCategoryId',(res) => {
+		      context.commit('change', res.data)
+		   })
+		}
+	    }
+	})
+
+
+
+<div class="demo-image">
+  <div class="block">
+    <span class="demonstration">{{ fit }}</span>
+    <el-image
+      style="width: 100px; height: 100px"
+      src="http://47.95.255.206/ej_picture/%e7%be%8e%e9%a3%9f.jpeg"
+      fit="fit"></el-image>
+  </div>
+</div>

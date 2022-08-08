@@ -1,0 +1,50 @@
+			vue第四天 の 插槽(ppt第三章后半部分)
+插槽意思：用slot标签在组件中开辟一个空间，以放想放的东西
+	  插槽内可以包含任何模板代码，甚至是其他组件。
+   1.普通插槽   组件中的东西都传给一个slot插槽，名字为default
+
+   2.具名插槽	组件传给固定名字的slot，<template v-slot:slot1>
+   						  简写：#slot1
+   	<template v-slot:slot1></template>
+
+   3.作用域插槽	 插槽向组件传数据
+   	slot中：   :data1="myComponentData"  data2:'组件数据2'
+	template标签中：   //scop是从下面传上来的一个作用域对象
+			     <template v-slot:slot1="scope">
+				//{{scope.data}}
+				{{scope}}
+			     </template>
+
+			     ??? scope就是slotProps ???
+
+			     !!! 解构：scope中有data1和data2 
+			     <template v-slot:slot1="{data1,data2}">
+				{{data1}}
+				{{data2}}
+			     </template>
+
+			     !!! v-slot简写形式：
+				v-slot:slot1  ==>  #slot1
+				传值了slot1后面写="scope"
+				没传值就不用写啦
+
+			vue第四天 の 可复用技术(ppt第四章前半部分)
+	1.动态组件：
+	  component
+		<component :is="currentCom"></component>
+	  keep-alive:    用在动态组件中，即包裹上面的component
+	  	默认情况下，当组件在切换的时候都会重新创建组件，
+		但是有些时候我们希望组件实例能够被在它们第一次
+		被创建的时候缓存下来。为了解决这个问题，我们可
+		以用一个<keep-alive>元素将其动态组件包裹起来。
+		
+	2.混入
+	   用来分发 vue组件中的可复用功能
+	  
+	3.自定义指令
+
+	4.过滤器
+
+	5.render渲染函数
+
+	6.plugin插件

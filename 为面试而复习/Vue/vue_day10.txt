@@ -1,0 +1,24 @@
+vue_day10   vue-element-admin   ppt第十章
+
+1.vue-element-admin = vue cli脚手架创建 + 自己封装一些东西
+    概念：是一个后台前端解决方案，它基于vue和element-ui实现。 
+
+    使用vue-element-admin-master
+       里面的东西：
+       	   src下面：
+	     components:   封装的许多组件
+	     directive：   自定义指令
+	     filters：     自定义过滤器
+	     icons：       许多的图标
+	     layout：	   布局
+	     router：	   路由
+	     store：	   状态机
+	     style:	   样式
+	   tips：npm的理解：
+	     就是本地和npm服务器之间包/命令的上传于下载
+        1.第一步安装依赖：cnpm install
+	2.直接跑 npm run dev
+
+    使用vue-admin-template-master
+    	其实启动项目的过程就是webpack打包的过程:
+		将vue页面转换为浏览器可以识别的html和css

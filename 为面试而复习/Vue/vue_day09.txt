@@ -1,0 +1,59 @@
+	vue_day09: webpack、vue-cli	ppt第九章
+1.Vue CLI
+      概念：是一个基于Vue.js进行快速开发的完整系统
+  tips(之前知识点补充):node.js是javaScript的服务器运行环境;
+                       对ES6的支持度更高
+	1)安装脚手架vue cli      vue --version检测是否安装
+		npm install -g @vue/cli
+		# OR
+		yarn global add @vue/cli
+
+	2)创建一个项目(也可以用vue-ui)
+	   1.vue create hello-world
+	   2.然后：
+	     1.自定义选择配置
+             2.选择要下载的插件：
+	       Choose Vue version,Babel,Router,Vuex,CSS Pre-processors
+	   3.选择vue版本：2.x版本
+	   4.是否使用history模式(需要后端配合相对于哈希模式)：no
+	   5.选择css预设：less
+	   6.配置信息是放在一个文件内还是各自的文件中：各自的
+	   7.是否保存为未来项目的预设：是
+	   8.保存预设的名字：vue-vuex-router-less-babel
+	      是否将node_modules添加到.gitignore? yep
+	     
+	 3)进入项目  cd hello-world
+	 4)运行项目  npm run serve
+	     tips:  element-ui最开始是为vue量身打造的ui库
+	 5)终止项目以安装插件
+	     1.vue add element
+	     2.全局应用还是按需引用
+	     3...
+	     tips：npm配置淘宝镜像：npm就和cnpm一样快了
+	 6)再运行项目：
+	     最上面的导航就不见了，多了一个按钮：el-button
+
+	     tips：在和src同级上建一个vue.config.js(看起来像vue配置文件，实际
+	     上是webpack[打包项目并运行到服务器上]配置文件)
+	     来修改运行项目时的端口号
+		//webpack配置文件中写
+	         module.exports = {
+		    devServer: {
+		       port: 3000,
+		       open: true
+		    }
+		 }
+	  7)下载axios插件和qs到开发依赖中
+	  	cnpm i -D axios
+		cnpm i -D qs
+	  总结安装的所有插件：
+	      自动安装：bable vue-router vuex less 
+	      手动： element-ui axios qs
+	      一个框架配了7个插件
+
+2.修改框架，增加从登陆页面登陆跳转到首页中的功能
+    1）在hello-world/src/views下新加.vue页面
+        tips：使用less要这个样子啦：
+	        <style scoped lang="less"/>
+
+day9的第二个视频看到18分钟之后就随便看了

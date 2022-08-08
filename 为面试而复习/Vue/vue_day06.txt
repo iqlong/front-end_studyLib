@@ -1,0 +1,65 @@
+vue_day6：vuex     ppt的第六章
+
+1.vuex概念：vuex是专门为vue.js开发的状态管理模式，也叫状态机
+      vuex是一个中央存储库，将组件共同的数据、状态进行
+      同一存储，方便其他组件的调用
+
+	  引用场景：
+	     A组件：
+	     	a数据
+	     B组件：
+	     	b数据
+
+	     要求：A组件使用b数据，B组件使用a数据
+
+	     通过vuex将a数据和b数据都存储到vuex中，
+	     A组件、B组件都可以按需导入vuex中的数据
+
+2.vuex基本使用
+     let store = new Vuex.Store({
+        state: {
+	   //用来存储数据、状态（类似于vue实例内data）
+	   timeStamp: 1231546,
+	   categories: {}
+	},
+	getters: {
+	   //用来返回处理（state中的数据）后的数据、状态
+	   （类似于vue实例中的计算属性）
+	   timeStamp() {
+	      return new Data(state.timeStamp).toLocalString()
+	   }
+	},
+	mutations: {
+	   //突变，用来修改state中的数据、状态
+	   //state，payload载荷（参数）
+	   changeTimeStamp(state,payload) {
+	     state.timeStamp = payload 
+	   },
+	   changeCategories(state,payload) {
+	     state.Categories = payload 
+	   }
+	},
+	actions: {
+	   //动作，用来放置异步操作
+	   findAllCategories(context,payload) {
+	     $.get('/category/findAll',(res) => {
+	        context.commit('changeCategories',res.data)
+	     })
+	   }
+	}
+     })
+
+3.veux状态机
+	//1.声明vuex模块化对象 
+	     let moduleA = ...  namespace= 'true'
+	//2.声明vuex实例，将模块化对象作为参数传递过去
+	      let store = new Vuex.Store({
+	         modules: {
+		    moduleA,
+		    moduleB
+		 }
+	      })
+	//3.将vuex实例store注入到vue实例中
+	       let vm = new Vue({
+	          store
+	       })

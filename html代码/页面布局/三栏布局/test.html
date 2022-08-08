@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+    <style>
+        .lr {
+            width: 200px;
+            height: 500px;
+            background-color: aqua;
+        }
+        .left {
+            float: left
+        }
+        .left:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .right {
+            float: right;
+        }
+        .right::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
+        .main {
+            width: calc(100% - 400px);
+            height: 500px;
+            background-color: red;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="left lr"></div>
+    <div class="main"></div>
+    <div class="right lr"></div>
+</body>
+</html>

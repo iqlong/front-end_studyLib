@@ -9,3 +9,5 @@ Promise.reject().then(null,()=>{
     console.log('XX',mes);
     console.log('hahah')
 })
+
+

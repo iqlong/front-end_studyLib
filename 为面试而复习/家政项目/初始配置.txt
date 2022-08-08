@@ -1,0 +1,56 @@
+项目初始配置.txt
+
+	src -> http -> axios.js 配置
+		根据自己的项目所需，将baseURL配置为自己的swagger接口url
+		Content-Type根据自己所需进行配置
+		axios.defaults.baseURL = 'http://203.195.246.58:5588/'
+		axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded;charset=UTF-8'
+
+	登录配置
+		1、在swagger中将后台接口地址复制 例如：http://134.175.100.63:5588/
+		2、来到 src -> utils -> request.js文件内 第八行 baseURL 替换成自己的接口地址 http://203.195.246.58:5588/
+		3、根目录下 .env.production 将里面的VUE_APP_BASE_API替换成http://203.195.246.58:5588/
+
+		4、来到 store -> modules -> user.js 第三十五行 login({ username: username.trim(), password: password }) 
+		   在里面新增一个type  type:'manager' （根据自己的项目登录接口所需，如有需要用户类型，
+			可进行设置，如不需要，不设置即可）
+
+		5、然后保存配置 重新运行项目 回到项目中看此时的登录是否能成功 登录成功 配置生效 
+		
+
+  项目部署
+
+	后台Swagger地址：http://121.199.29.84:8002/swagger-ui.html
+
+	web端访问：http://121.199.29.84/ej-web
+
+	顾客手机端：http://121.199.29.84/ej-app-customer
+
+	员工手机端：http://121.199.29.84/ej-app-employee
+
+	登录用户：admin1 密码：123321
+
+  链接数据库导入数据库文件
+	jar包配置信息
+        连接数据库	        ej1.0
+        数据库用户名/密码    briup/briup
+        连接数据库地址       本地配置127.0.0.1 或者 %
+
+        项目启动端口号为    5588
+
+
+  本地文件上传阿里云
+	1.使用图形化工具FileZilla、小黄鸭 都可以
+	2.使用命令在终端上传
+	    scp 本地文件路径/文件名 阿里云账户名@阿里云地址:文件上传地址
+	    scp ./ej-20000.jar wu@39.105.67.242:/home/用户名
+
+	    scp ./ej-20000.jar wu@39.105.67.242:/home/用户名
+	    输入账户密码
+
+	启动jar包命令
+	nohup java -jar ....jar &
+	停止命令
+	kill -9 进程号
+
+

@@ -1,8 +1,6 @@
-let p = Promise.resolve('gg').catch((e) => {
-    console.log(e)
-})
-
-setTimeout(() => {
-    console.log(p)
-},0)
-
+new Promise((resolve, reject) => {
+    resolve(() => {console.log('g');return 2});
+    console.log(2);
+  }).then(r => {
+    console.log(r);
+  });

@@ -1,0 +1,96 @@
+		vue_day07 axios  ppt第七章
+
+axios：不在vue官方文档中的一个插件
+其他两个插件：vuex  vue-router
+
+1.概念
+   Axios是一个基于promise的HTTP库，可以用在浏览器和node.js中。
+   jQuery中也封装了ajax机制，但是仅适用于浏览器。
+   因为：jQuery中操作的是dom 而dom只在浏览器中有，node中没有
+
+2.基本使用
+   axios默认传参  ->  json
+   加入想要传递查询字符串，直接将data中的数据用
+   qs.stringify()转成查询字符串
+   例子：
+       axios({
+         url: ''
+         method: ''
+         // get请求参数放在params里
+         params: { }	//拼接到在请求头上
+         // post请求参数放在data里
+         data: { }		//放到请求体中
+       })
+
+       tips：success成功的回调和失败的 回调是es5中用的了
+
+   1.基于promise承诺机制的异步解决方案
+
+   2.用async异步解决方案
+   	
+3.API
+    实例化
+       axios.create([config])
+    方法
+       axios(config)
+       //之前的get又可以新增又可以删除
+       axios.request(config)
+      *axios.get(url[,config]
+      *axios.delete(url[,config])
+      +axios.head(url[,config])
+      +axios.options(url[,config])
+
+      *axios.post(url[,data[,config]])
+      *axios.put(url[,data[,config]])
+      *axios.patch(url[,data[,config]])
+       处理并发请求方法
+       axios.all(iterabel)
+       axios.spread(callback)
+
+    Restful风格
+      常用的HTTP动词有下面五个（括号里是对应的SQL命令）
+      	   GET(SELECT): 从服务器取出资源(一项或多项)。
+	   POST(CREATE): 在服务器创建一个资源。
+	   PUT(UPDATE): 在服务器更新资源(客户端提供改变后的完整资源)
+	   PATCH(UPDATE): 在服务器更新资源(客户端提供改变的属性)
+	   DELETE(DELETE): 从服务器删除资源
+       还有两个不常用的HTTP动词
+       	   HEAD: 获取资源的元数据。
+	   OPTIONS：获取信息，关于资源的那些属性是客户端可以改变的。
+
+    axios配置参数：
+    	url   methos 	baseURL  headers  params  data
+	timeout ...
+       响应结构：与jquery中的ajax不同的是，axios会对放回结构进行
+       	         封装为如下结构：
+		 {
+		    data: {},			//后台返回的数据
+		    status: 200,		//状态码：不是data的状态码，是http请求的状态码
+		    statusText: 'OK',		//状态信息
+		    headers: {},		//服务器头部信息
+		    config: {},			//axios对request的配置
+		    request: {}			//request对象
+		 }
+
+7.拦截器
+	请求拦截器：
+	     在请求发送到服务器之前进行拦截
+	     axios.interceptors.request.use(function (config) { 
+			// 在发送请求之前做些什么 
+			return config; 
+		}, function (error) { 
+			// 对请求错误做些什么
+			return Promise.reject(error); 
+		});
+
+	响应拦截器
+		把上面的request改为response
+	拦截器移除
+		let myInterceptor = axios.interceptors.use(function(){});
+		axios.interceptors.request.eject(myInterceptor);
+		
+
+    	
+	
+
+   	
