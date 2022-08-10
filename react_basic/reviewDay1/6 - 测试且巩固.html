@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+</head>
+<body></body>
+    <div id="react"></div>  
+    <script type="text/babel">
+        // 使用 jsx 可以自动渲染数组，那其中的 <h1></h1> 标签直接写还是字符串
+        
+        // const vDom = (
+        //     <div>{[<div>张先生</div>, <div>慧hui</div>, <div>龙</div>]}</div>
+        // )
+        const testDom = <div>testDiv</div>
+        // 并且实现一个 classComp 用于展示人的信息(包括props和state的简写使用)
+        class Person extends React.Component{
+            static propTypes = {
+                person: PropTypes.object.isRequired
+            }
+            static defaultProps = {
+                person: {
+                    name: 'test',
+                    age: 12,
+                    gender: 'female'
+                }
+            }
+            render () {
+                const {name, age, gender} = this.props.person
+                console.log(this.props);
+                return (
+                    <ul>
+                        <li>{name}</li>
+                        <li>{age}</li>
+                        <li>{gender}</li>
+                    </ul>
+                )
+            }
+            state = {
+
+            }
+        }
+        const react = document.querySelector('#react')
+        // ReactDOM.render(vDom, react)
+        // ReactDOM.render(testDom, react)
+        const person =  {
+            name: 'zhl',
+            age: 12,
+            gender: 'male'
+        }
+        ReactDOM.render(<Person person = {person}/>, react)
+
+    </script>
+</body>
+</html>

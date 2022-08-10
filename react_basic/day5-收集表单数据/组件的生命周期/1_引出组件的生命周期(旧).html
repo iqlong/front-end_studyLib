@@ -15,6 +15,7 @@
 <button>重新挂载组件</button>
 <script type="text/babel">
     class MyForm extends React.Component{
+        // this私有
         state = {
             count: 0
         }
@@ -41,7 +42,6 @@
                     }>销毁组件</button>
                     <br/>
                     <button onClick={this.forceUComp}>强制更新组件</button>
-
                 </div>
             )
         };
