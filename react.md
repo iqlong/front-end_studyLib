@@ -45,9 +45,6 @@
 
 4. 虚拟dom只有一个根标签
 
-5. jsx中对于表达式和语句的使用：从jsx 使用v-for循环的一个思考
-
-6. 对于函数式组件和类式组件，给render的第一个参数传入 大写的标签
 
 #### react中定义组件
 
@@ -72,7 +69,7 @@
     + 属性写在 **constructor** 中，其中使用super()的固定写法，然后 this. 使用自身的属性
     + 需要渲染的东西写在render函数中
 
-    
+      
 
 + ***然后开始学习组件中的三大实例对象***
 
@@ -82,9 +79,9 @@
 
       + react中的事件：时间名要camel，函数不加(),表达式放{}中： onClick = {conl
 
-    + [***强烈注意***](d:\Users\Admin\Desktop\react学习\image\强烈注意.png)
+    + [***强烈注意***](C:\Users\张慧龙\Desktop\react学习\image\强烈注意.png)
 
-      <img src="d:\Users\Admin\Desktop\react学习\image\强烈注意.png"  />
+      <img src="C:\Users\张慧龙\Desktop\react学习\image\强烈注意.png"  />
 
 
 
@@ -149,7 +146,7 @@
 
   + 原因：         解决方法就是html中不内联js函数，函数写在class中
 
-    ![](d:\Users\Admin\Desktop\react学习\image\回调refs的问题.png)
+    ![](C:\Users\张慧龙\Desktop\react学习\image\回调refs的问题.png)
 
 + 小课堂：jsx中是标签形式：
 
