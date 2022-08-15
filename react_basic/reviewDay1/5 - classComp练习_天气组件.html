@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+    <div id="react"></div>  
+    <script type="text/babel">
+        // aim: 利用类组件实现一个天气组件
+        class Weather extends React.Component {
+            constructor() {
+                // 固定写法
+                super();
+                this.state = {
+                    isHot: true
+                }
+                // this.changeWeather = this.changeWeather.bind(this)
+            }
+            render() {
+                const { isHot } = this.state;
+                return  <h2 onClick={this.changeWeather}>  
+                            {isHot}今天天气很{isHot ? '炎热' : '凉爽'}
+                        </h2>
+
+            }
+            changeWeather = () => {
+                // this.state.isHot = !this.state.isHot
+                let isHot = this.state.isHot;
+                this.setState({
+                    isHot: !isHot,
+                })
+                console.log("clicked", this.state.isHot);
+            }
+        }
+        const react = document.querySelector('#react')
+        ReactDOM.render(<Weather/>, react)
+    </script>
+</body>
+</html>

@@ -19,7 +19,8 @@
                 super(props);
                 this.state={
                     isHot: true,
-                    fal: false
+                    fal: false,
+                    mes: 'gg'
                 };
                 this.changeW = this.setWeather.bind(this);
             }
@@ -29,7 +30,7 @@
                     // 第二个注意：类中(默认'use strict')且变量onclick指向类中函数，
                     //   会导致this的变化
                 // react中的语法  onclick ===> onClick
-                return <h3 onClick={this.changeW}>今天天气很{this.state.isHot? '炎热':'凉爽'}</h3>
+                return <h3 onClick={this.changeW}>{this.state.mes}今天天气很{this.state.isHot? '炎热':'凉爽'}</h3>
             }
             // 执行次数：点击的n次
             setWeather() {

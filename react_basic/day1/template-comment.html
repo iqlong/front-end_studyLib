@@ -5,27 +5,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--// 先引入react的核心库-->
     <script src="../js/react.development.js"></script>
+    <!--// 再引入react的dom库-->
     <script src="../js/react-dom.development.js"></script>
+    <!--// 再引入babel库将es6转换es5    *** 可以将jsx转js-->
     <script src="../js/babel.min.js"></script>
 </head>
 <body>
+    <!--// 包裹器-->
     <div id="react"></div>  
-
     <script type="text/babel">
-        const VDom = function FuncComp() { 
-            return <h1>我是一个函数式组件</h1>
-        };
-        class ClassComp extends React.Component{
-            render() {
-                return <h3>我是一个类式组件</h3>
-            }
-        }
-        // 函数式组件的使用
-        ReactDOM.render(<VDom></VDom>, document.getElementById('react'));
-        // 类式组件的使用
-            // 再次的render()是覆盖操作
-        ReactDOM.render(<ClassComp/>, document.getElementById('react'));
+        // 用jsx的语法写上vDOM()
+        // 也可以用React.createElement(标签名, 属性, 内容)
+            // 中创建虚拟dom
+        const vDOM = <h2>多包涵，react</h2>;
+        // 将vDOM渲染到页面上去: 使用的 jsx 的方式，并且使用 babel 来解析
+        ReactDOM.render(vDOM, document.getElementById('react'));
     </script>
 </body>
 </html>

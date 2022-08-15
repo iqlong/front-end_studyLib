@@ -5,22 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--// 先引入react的核心库-->
     <script src="../js/react.development.js"></script>
-    <!--// 再引入react的dom库-->
     <script src="../js/react-dom.development.js"></script>
-    <!--// 再引入babel库将es6转换es5    *** 可以将jsx转js-->
     <script src="../js/babel.min.js"></script>
+    <!-- 一个用于props验证规则的库 -->
+    <script src="../js/prop-types.js"></script>
 </head>
 <body>
-    <!--// 包裹器-->
-    <div id="react"></div>  
+    <div id="react"></div>
     <script type="text/babel">
-        // 用jsx的语法写上vDOM
-            // 也可以用React.createElement(标签名, 属性, 内容)中创建虚拟dom
-        const vDOM = <h2>多包涵，react</h2>;
-        // 将vDOM渲染到页面上去
-        ReactDOM.render(vDOM, document.getElementById('react'));
+        const FuncComp = (p) => {
+            console.log(p);
+            return (
+                <h3>hello, you are using props in function Component!</h3>
+            )
+        }
+
+        const react = document.querySelector('#react')
+        ReactDOM.render(<FuncComp name="张慧龙"/>, react)
     </script>
 </body>
 </html>

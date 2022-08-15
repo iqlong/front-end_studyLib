@@ -1,5 +1,14 @@
 # React开始啦
 
+## 学习的目标的技术
++ React基础
++ PubSub
+> 1. 多了一个消息管理的仓库
+> > + 是一个类似于**全局事件总线吗**
+
++ Redux
++ Ant Design
+
 ### 为什么要学习前端框架
 
 + 原生js操作dom比较繁琐且效率低
@@ -21,27 +30,44 @@
   + 虚拟dom比较轻，真是dom重，应为多一部渲染到浏览器中，要一些真实dom的API啥的
   + 虚拟的归宿就是渲染为真实Dom
 
-+ [jsx语法规则](C:\Users\张慧龙\Desktop\react学习\image\jsx语法规则.png)
++ ![jsx语法规则](d:\Users\Admin\Desktop\react学习\image\jsx语法规则.png)
 
-  ![](C:\Users\张慧龙\Desktop\react学习\image\jsx语法规则.png)
 
+### 关于 jsx 的思考过程
+1. jsx: js + xml; 其中就是一种方便的形式去表示虚拟Dom的形式，也是React.createElement()的一个语法糖
+> + 使用转移：nativeMethod: React.creatElement(标签名, attribute, containt)
+> + to:                    ReactDOM.render(divs, containner)
+
+2. 对于其中使用变量和使用样式的方式
+> + 表达式使用 **{}**, class在 **jsx** 中为了避免和 js 中的class冲突，为className
+
+3. jsx 对于内联样式 { object类型变量 } 
+
+4. 虚拟dom只有一个根标签
 
 
 #### react中定义组件
 
-+ [***函数式组件***](C:\Users\张慧龙\Desktop\react学习\image\函数式组件.png)  ---  简单组件
++ [***函数式组件***](d:\Users\Admin\Desktop\react学习\image\函数式组件.png)  ---  简单组件
 
-  + ![](C:\Users\张慧龙\Desktop\react学习\image\函数式组件.png)
+  + ![](d:\Users\Admin\Desktop\react学习\image\函数式组件.png)
 
-+ [***类式组件***](C:\Users\张慧龙\Desktop\react学习\image\类式组件.png)  ----  复杂组件
+    
 
-  + 必须extend React.Component
++ [***类式组件***](d:\Users\Admin\Desktop\react学习\image\类式组件.png)  ----  复杂组件
 
-  + ![](C:\Users\张慧龙\Desktop\react学习\image\类式组件.png)
+  + 必须extend React.Compon ent
+
+  + ![](d:\Users\Admin\Desktop\react学习\image\类式组件.png)
 
   + 类实例中主要的属性： props, refs, state +     context
 
     + tip: 三个属性是只有在class定义的组件中才有的，但是新版本的react出现了hooks可以让函数中也支持这三个属性
+
+  + 使用
+
+    + 属性写在 **constructor** 中，其中使用super()的固定写法，然后 this. 使用自身的属性
+    + 需要渲染的东西写在render函数中
 
       
 
@@ -65,6 +91,10 @@
   + 也可以写函数赋值表达式和变量赋值表达式：
     + age =12; fu = function()
     + 其前不用加let，且其中内容会放在对象中
++ 且在类中定义的函数在局部都开启了严格模式
++ **class** 中合法的内容
+  1. 直接写赋值的变量
+  2. 函数 (包括构造函数)
 
 
 
@@ -124,6 +154,7 @@
   + {//}不可以，需要使用{ /**/ }
 
 + ***React.createRef()***API的使用
+  
   + 生成一个存储ref的容器
   + 专人专用，只存一个 {current:  dom}
   + ***react最推荐的，但是很麻烦，估计效率高***
@@ -142,6 +173,7 @@
 >    1. 受控组件 和 非受控组件
 >    2. 高阶函数_函数的柯里化
 > 4. vscode中的折叠小技巧： // #region             // #endregion
+> 4. **注意，在classComp中，class中的函数交给了时间处理回调，所以this的指向会被改变**
 
 #### HOC 高阶组件在react中和再vue中的实现
 
@@ -161,3 +193,123 @@
    + dom属性的变化
    + dom的增删
    + dom的移动
+
+
+
+### 受控组件和非受控组件
+
++ 其中非受控组件的定义是：现用现取
+
+### 组件的生命周期
+
++ 首先接触的：ReactDOM.unmountComponentAtNode
++ 一个用例的反思：
+  2. render中计时的改变状态：
+     + 会触发递归的调用
++ componentDidMount
++ componentWillUnmount
++ review:   constructor()    componentWillMount()    render()     componentDidMount()    componentWillUnmount
+
++ 从父/更新的角度来说：
+  1. shouldComponentUpdate
+  2. componentWillUpdate
+  3. ///////////////////////render
+  4. componetDidUpdate
+  5. componentWillReceiveProps
+
+### 生命周期的过度
+
++ 废弃了：ComponentWillReceiveProps         ComponentWillUpdate       ComponentWillMount
++ 新增了：getDerivedStateFromProps                getSnapshotBeforeUpdate
+
+
+
+### 一个jsx中折叠的小技巧
+
++ //#region            
++ //#endregion
+
+## 开始react工程化学习
+
+1. 安装 **create-react-app**
+2. 使用命令 **create-react-app ...**
+
+
+
+
+
+
+
+## react-router 的使用
+
+### link标签的使用
+
+> 1. NavLink 可以利用 activeClassName 来指定激活添加的类名
+> 2. 任何标签都可以通过 children 属性指定标签体的body的内容
+> 3. 封装一下 **Link** 可以通过使用react特殊的用于对象解构的操作符   {...obj}
+>    + 其中 **{}** 表示的是其中包裹这运算符
+
+### 一次思考
+
+> 1. react可以不用路由的映射关系实现router效果   ===>   利用 Route 的path属性
+> 2. Link / NavLink 标签和 Route / Switch   都需要被 BrowserRouter / HashRouter 所包裹
+> 3. 需要学习的东西
+>    + 多级路由
+>    + 动态参数匹配
+>    + 参数的传递和获取
+>    + 命名视图
+>    + re'direct 放在route组件的最后
+
+### 巩固项目
+
+> + 自己封装一个NavLink标签
+> + 实现嵌套路由
+>   + react中不适用路由表 / 命名
+>   + 总感觉路由信息写的太分散了，要找的时候不好找
+>   + 普通组件卸载 component中 路由组件写在 pages 中
+
+
+
+### 参数的传递
+
+> + params参数： this.props.match.params
+> + search参数 ：  this.props.loaction.search             =>> 需要使用    qs.parse() 解析一下
+> + state参数：      to中传入的是一个对象： path   state   
+>   + this.props.location.state
+> + 利用 withRouter 将一般组件变为路由组件
+
+### 
+
+
+
+| **项目提测**       |                                         |
+| ------------------ | --------------------------------------- |
+| **所属项目\***     | pc-student-client-new 11040             |
+| **提测功能\***     | 【PC 1V1】学生端文案优化                |
+| **研发\***         | 前端：杨晋 后端：张尚磊                 |
+| **测试\***         |                                         |
+| **产品\***         | 黄喆婷                                  |
+| **jira**           | http://jira.zmops.cc/browse/PCSTUD-1518 |
+| **项目功能地址\*** |                                         |
+| **其他环境说明\*** |                                         |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

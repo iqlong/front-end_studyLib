@@ -8,20 +8,13 @@
     <script src="../js/react.development.js"></script>
     <script src="../js/react-dom.development.js"></script>
     <script src="../js/babel.min.js"></script>
+    <!-- 一个用于props验证规则的库 -->
+    <script src="../js/prop-types.js"></script>
 </head>
 <body>
-<div id="react"></div>
-<script type="text/babel">
-    class MyForm extends React.Component{
-        render() {
-            return (
-
-            )
-        };
-
-    }
-
-    ReactDOM.render(<MyForm/>, document.getElementById('react'));
-</script>
+    <div id="react"></div>  
+    <script type="text/babel">
+        const react = document.querySelector('#react')
+    </script>
 </body>
 </html>

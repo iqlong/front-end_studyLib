@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <!-- 一个用于props验证规则的库 -->
+    <script src="../js/prop-types.js"></script>
+</head>
+<body>
+    <div id="react"></div>
+    <script type="text/babel">
+        // 1. 字符串形式的ref
+        // 2. 回调函数形式的ref
+            // 分为内联函数和非内联函数两种情况 -- 非内联也就是定义为class的绑定函数
+        // 3. 使用React.createRef, 但是这个容器只可以放一个ref引用，且存在于 current 中
+            // 使用方式： ref = { this.myRef }      ----  其中 this.myRef = React.createRef()
+        class MyInput extends React.Component {
+            state = {
+                mes: '请输入数据.',
+            }
+            // get refDom () {
+            //     // 使用计算属性或者直接使用 this. ... 直接从class中拿到数据并且响应
+            //     return this.refs.myInput
+            // }
+
+
+            // !!!事件方法也写成内联会怎么样
+            reactModel = () => {
+                // const refDom = refDom;
+                // console.log(refDom);
+                this.setState({
+                    mes: this.refDom.value
+                })
+            }
+
+            showInputValue = () => {
+                alert(this.refDom.value)
+            }
+
+            render() {
+                let { mes } = this.state
+                return (
+                    <div>
+                        {mes}
+                        <br/>
+                        <hr/>
+                        <input ref="myInput" onChange={this.reactModel} type="text" value={ mes }/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button onClick={ this.showInputValue }>click me show input-value</button>
+
+                    </div>
+                )
+            }
+        }
+
+
+        const react = document.querySelector('#react')
+        ReactDOM.render(<MyInput/>, react)
+    </script>
+</body>
+</html>

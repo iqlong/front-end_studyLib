@@ -11,21 +11,16 @@
 </head>
 <body>
     <div id="react"></div>  
-
     <script type="text/babel">
-        const VDom = function FuncComp() { 
-            return <h1>我是一个函数式组件</h1>
-        };
-        class ClassComp extends React.Component{
-            render() {
-                return <h3>我是一个类式组件</h3>
-            }
+        const TextComponent = function () {
+            // console.log(this);           // 由于是写在babel中，所以this的指向是null
+                
+            return <h3>hello, i'm a textComponet</h3>
         }
-        // 函数式组件的使用
-        ReactDOM.render(<VDom></VDom>, document.getElementById('react'));
-        // 类式组件的使用
-            // 再次的render()是覆盖操作
-        ReactDOM.render(<ClassComp/>, document.getElementById('react'));
+        const react = document.querySelector('#react')
+        ReactDOM.render(<TextComponent/>, react)
+
+
     </script>
 </body>
 </html>
