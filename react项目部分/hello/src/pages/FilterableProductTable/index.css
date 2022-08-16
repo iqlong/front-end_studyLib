@@ -1,0 +1,9 @@
+.tableWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.filterTable {
+    padding: 8px;
+}
