@@ -26,20 +26,24 @@ const FilterableProductTable: FC<any> = () => {
 
   const compSearchData = useMemo(() => {
     const filterData = resData.filter((item) => {
-      return item.name.search(searchText) !== -1;
+      if(ifStock) {
+        return item.name.search(searchText) !== -1  && item.stocked === true;
+      }else {
+        return item.name.search(searchText) !== -1;
+      }
     });
     setShowData(filterData);
-  }, [searchText]);
+  }, [searchText, ifStock]);
 
-  const compIfStock = useMemo(() => {
-    let filterData = showData;
-    ifStock == true
-      ? (filterData = showData.filter((item) => {
-          return item.stocked === true;
-        }))
-      : "";
-    setShowData(filterData);
-  }, [ifStock]);
+  // const compIfStock = useMemo(() => {
+  //   let filterData = showData;
+  //   ifStock == true
+  //     ? (filterData = showData.filter((item) => {
+  //         return item.stocked === true;
+  //       }))
+  //     : "";
+  //   setShowData(filterData);
+  // }, [ifStock]);
 
   return (
     <div className="tableWrap">
