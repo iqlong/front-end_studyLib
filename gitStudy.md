@@ -45,7 +45,47 @@
 
 
 
-```
+#### git pull 的使用
 
-```
+1. git remote show origin 
+
+> 可以详细的看到远程的一些信息
+
+2. git fetch -v ：查看所有的分支（本地和远程）是否同步
+
+#### 修改分支 & 删除分支
+
+##### 1. 修改分支
+
+> + 本地： ***git branch -m oldName newName***
+> + 远程：
+>   1. 删除远程
+>   2. 重命名本地分支
+>   3. git push到远程
+> + tip:   vscode中遇到冲突使用add，默认保留theirs
+
+2. ##### 删除分支
+
+   > + 本地： ***git branch -D <name>***
+   > + 远程:   ***git push --delete origin <name>***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
