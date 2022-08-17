@@ -1,0 +1,36 @@
+<script src="https://unpkg.com/vue@3"></script>
+<div id="app"></div>
+<script>
+    const { createApp, h, ref,onMounted } = Vue;
+    const Son = {
+        // props: ['test'],
+        setup(props, { expose,attrs }) {
+            const count = ref(0)
+            const increment = () =>console.log('hh');
+            // 将increment 方法暴露给父组件，个人测试expose只能暴露方法
+            // expose({
+            //     increment
+            // })
+            console.log(`don't in lifeCycle`,props, props.test, attrs);
+            return {
+                count
+            }
+        },
+      template: `<button>the button in sonComponent</button>`,
+    };
+    const father = createApp({
+      components: { Son },
+      setup() {
+        let sonGG = ref(null);
+        // 使用类似this.$refs的写法 于 setup()
+            // 注意 - 需要写在onMounted钩子中才可以
+        console.log(sonGG.value);
+        onMounted(() => {
+            console.log(sonGG.value.count,sonGG.value.increment);
+        });
+        return { sonGG };
+        // return () => h('Son',{ref:'sonGG'})
+      },
+      template: `<Son ref='sonGG' test='zhlTest'></Son>`,
+    }).mount("#app");
+</script>

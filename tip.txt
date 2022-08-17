@@ -1,0 +1,18 @@
+transition
+ref...  and defineProps(), when func get a obj
+
+// while conflict between 'savePosition in route' and 'transition'
+// transition 和 keep-alive 组件的用法变化
+    // before:
+    	<keep-alive>
+	     <Component/>
+	</keep-alive>
+	
+	
+    // now: 
+    	<keep-alive v-slot="{Component}">
+	    <component :is="Component" />
+	</keep-alive>
+
+// vue-router
+1. use meta and beforeEach() to achieve a fake login 

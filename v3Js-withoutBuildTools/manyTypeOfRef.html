@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    {{age}}
+    <div>
+      <button @click="age++">age++</button>
+    </div>
+    {{name}}
+    <div>
+      <button @click="name++">name++</button>
+    </div>
+  </div>
+
+  <script>
+    const { createApp,ref,onMounted,reactive } = Vue
+
+    createApp({
+      setup() {
+        let objMy={age: 21}
+        let refDiv = ref(objMy); 
+        let obj = { name: "1" };
+let stateRef = reactive(obj);
+console.log("obj", obj.name);
+console.log("ref", stateRef.name);
+// obj 1
+// ref 1
+
+stateRef.name = '2';
+console.log("obj", obj.name);
+console.log("ref", stateRef.name);
+// obj 2
+// ref 2
+
+
+obj.name='3'
+console.log("obj", obj.name);
+console.log("ref", stateRef.name);
+let x=refDiv.value.age
+console.log(refDiv.value,typeof refDiv.value,typeof refDiv,{...stateRef},{...refDiv},{...refDiv.value});
+
+
+        return {...stateRef,...refDiv.value};
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
