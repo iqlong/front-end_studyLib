@@ -1,0 +1,4 @@
+{
+  "plugins": ["@vue/babel-plugin-jsx"]
+}
+  
