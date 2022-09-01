@@ -7,6 +7,13 @@
 > + 所以说***git revert 是取消某个步骤***
 > + ***git reset ***是舍弃步骤后的记录
 >   + ***git reset --mixed***   被挡住了，怕你不知道，说一下
+>
+> + revert学习中的扩展
+>   1. ***revert*** commit 分为 *普通* 和 *merge commit*
+>   2. ***git tag***打标签，git中使用 ***&&*** 执行多个命令
+>   3. git执行过程中使用 ***#*** 表示注释
+>   4. ***git log --graph*** 和 配置的 ***git lograph*** 快捷指令
+>   5. ***git checkout -*** 的使用
 
 #### 远程更新到本地
 
@@ -73,7 +80,7 @@
 
 
 
-wrap   margin  
+
 
 
 
