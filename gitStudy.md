@@ -4,10 +4,10 @@
 
 <img src='./images/git回滚.png' style="width: 100%;  height:120%" />
 
-> + 所以说***git revert 是取消某个步骤***
+> + 所以说***git revert 是取消某个步骤***  ------  ***重复！！ 就是干掉这个东西和这个东西后的东西***
+>   + ***！！！ reset是舍弃自己后面的（不包括自己）***
 > + ***git reset ***是舍弃步骤后的记录
->   + ***git reset --mixed***   被挡住了，怕你不知道，说一下
->
+>  + ***git reset --mixed***   被挡住了，怕你不知道，说一下
 > + revert学习中的扩展
 >   1. ***revert*** commit 分为 *普通* 和 *merge commit*
 >   2. ***git tag***打标签，git中使用 ***&&*** 执行多个命令
