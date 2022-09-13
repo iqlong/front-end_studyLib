@@ -146,7 +146,7 @@
 
   + 原因：         解决方法就是html中不内联js函数，函数写在class中
 
-    ![](C:\Users\张慧龙\Desktop\react学习\image\回调refs的问题.png)
+    ![](\image\回调refs的问题.png)
 
 + 小课堂：jsx中是标签形式：
 
@@ -278,7 +278,65 @@
 >   + this.props.location.state
 > + 利用 withRouter 将一般组件变为路由组件
 
+####  视频播放结束后的几种状态和跳转
 
+1. ***立即开始***				examState = 2 测评中
+
+   + 有**测评** && 没答题过
+     + **condition*:    videoHasTask === 1 && firstBreakThrough === true
+
+2. ***重新闯关***              examState = 0 未通过
+
+   + 答题失败了
+     + **condition*:    finishedTaskStatus === 0 && firstBreakThrough === false
+
+3. ***重新播放***              1 通过
+
+   + 最后一节课 & 没有考核/考核通过
+     + **condition*:    index === (len - 1) && ( videoHasTask == 0 || finishedTaskStatus === 1 )
+
+4. **自动进入下一个视频**
+
+   + 没有考核/考核通过 & 不是最后一节课
+
+     + **condition*:    index !== (len - 1) && ( videoHasTask == 0 || finishedTaskStatus === 1 )
+
+     <hr/>
+
+> #### */getTrainingClass*  新增字段
+>
+> finishedTaskStatus: 0 (ifSuc)               // 闯关是否成功：0  1               
+>
+> firstBreakThrough: false (ifFirst)          // 是否第一次闯关: false true    ***???***
+>
+> videoHasTask: 1 (ifTask)                      // 是否有考核
+
+
+
+#### 调用上报接口的参数： 
+
+> ```ts
+> /**接口字段都是必填字段 */
+> interface ReportTimeData {
+>   videoId: number;  			  // id
+>   viewingTime: number;			  // time	
+>   isAddBroadcastCount: boolean;	  // 播放次数
+>   flag: number;					// 视频切换方式falg 
+>   isFinish: number;   			// 是否结束 
+> } 
+> ```
+
+##### 前端调用共此接口的时候
+
+1. 默认播放和切换视频的方式       ----------   写在useEffect方法
+
+2. 重新播放 由于props 未改变 -> 组件未更新, useEffect未执行 -> 需要额外调用一次
+
+3. 视频组件在改变时间的时候使用每隔 x 分钟上报一次时间
+
+4. 在视频播放结束的时候上报一次   isFinish = 1， 标志这视频播放结束了
+
+   > 由于多个字段在一个接口，且每个字段都是必填的，所以间隔上传使用视频time；其他的上报使用上一次的播放时间
 
 
 
