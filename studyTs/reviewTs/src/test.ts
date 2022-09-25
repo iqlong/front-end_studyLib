@@ -1,22 +1,19 @@
-const foo = { x: 'string' };
-enum charList {
-    first= 'x',
-    second= 1,
+let zhl: unknown = '';
 
-}
-console.log(charList.first, charList.second);
-let hello: charList = charList.first
-
-interface IPoint { 
-    x:number,
-    y:number 
-} 
-
-type point = {
-    x: string,
-    y?: string
+interface Person {
+    name: string,
+    age: number,
 }
 
-let x: point = {
-    x: '',
+function goSchool<x extends Person>(arg: x) {
+    
 }
+
+type testObj = {
+    text: string
+}
+
+type getTO = keyof testObj
+// let key_testObj: getTO = 1
+
+let testVar: testObj['text'] = ''
