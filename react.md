@@ -30,7 +30,7 @@
   + 虚拟dom比较轻，真是dom重，应为多一部渲染到浏览器中，要一些真实dom的API啥的
   + 虚拟的归宿就是渲染为真实Dom
 
-+ ![jsx语法规则](d:\Users\Admin\Desktop\react学习\image\jsx语法规则.png)
++ ![jsx语法规则](image\jsx语法规则.png)
 
 
 ### 关于 jsx 的思考过程
@@ -48,17 +48,17 @@
 
 #### react中定义组件
 
-+ [***函数式组件***](d:\Users\Admin\Desktop\react学习\image\函数式组件.png)  ---  简单组件
++ [***函数式组件***](\image\函数式组件.png)  ---  简单组件
 
-  + ![](d:\Users\Admin\Desktop\react学习\image\函数式组件.png)
+  + ![](\image\函数式组件.png)
 
     
 
-+ [***类式组件***](d:\Users\Admin\Desktop\react学习\image\类式组件.png)  ----  复杂组件
++ [***类式组件***](\image\类式组件.png)  ----  复杂组件
 
   + 必须extend React.Compon ent
 
-  + ![](d:\Users\Admin\Desktop\react学习\image\类式组件.png)
+  + ![](\image\类式组件.png)
 
   + 类实例中主要的属性： props, refs, state +     context
 
