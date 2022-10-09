@@ -1,11 +1,13 @@
-import React, { FC, ReactElement, useEffect, useState } from "react";
+import React, { FC, ReactElement, useEffect, useState, useContext } from "react";
 import ProductCategoryRow from "./ProductCategoryRow/ProductCategoryRow";
 import ProductRow from "./ProductRow/ProductRow";
+import {StudnetMes} from "../FilterableProductTable";
 
 const ProductTable: FC<any> = (props) => {
     const { tableData } = props;
     const [ formateData, setFormateData ] = useState<object>([])
     const [ getContent, setContent] = useState<ReactElement[]>([])
+    const mes = useContext(StudnetMes)
 
     useEffect(() => {
         let collectMap = new Map()
@@ -43,6 +45,10 @@ const ProductTable: FC<any> = (props) => {
         <div>
             <h3>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Price</h3>
             { showData(formateData) }
+            <ul>
+                <li>{mes.name}</li>
+                <li>{mes.age}</li>
+            </ul>
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import React, { FC, useContext, useState, useMemo } from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import ProductTable from "./ProductTable/ProductTable";
-import StudnetMes from "./context";
+// import StudnetMes from "./context";
 import "./index.css";
+
+const StudnetMes = React.createContext({name: '六耳猕猴', age: 800})
 
 const resData = [
   {
@@ -71,6 +73,7 @@ const FilterableProductTable: FC<any> = () => {
   //   setShowData(filterData);
   // }, [ifStock]);
 
+
   return (
     <div className="tableWrap">
       <div className="filterTable">
@@ -84,3 +87,4 @@ const FilterableProductTable: FC<any> = () => {
 };
 
 export default FilterableProductTable;
+export {StudnetMes}

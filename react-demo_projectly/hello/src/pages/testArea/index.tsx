@@ -18,23 +18,15 @@ const TextArea: React.FC<any> = (props) => {
 
   // 3. Use the surname state variable
   const [surname, setSurname] = useState("Poppins");
-
+ 
   // 4. Use an effect for updating the title
   useEffect(function updateTitle() {
     document.title = name + " " + surname;
     console.log(`updateTitle: ${name}, ${surname}`);
   });
 
-  const themes = {
-    light: {
-      foreground: "#000000",
-      background: "#eeeeee"
-    },
-    dark: {
-      foreground: "#ffffff",
-      background: "#222222"
-    }
-  };
+  const [site, setSite] = useState({x: 12, y: 8})
+  
   
   return (
     <>
@@ -46,6 +38,12 @@ const TextArea: React.FC<any> = (props) => {
       >
         const num ++
       </button>
+      <button onClick={() => {
+        setSite((preSite) => {
+          return {...preSite, x: 18}
+        })
+      }}>set Site</button>
+      {site.x}
     </>
   );
 };
