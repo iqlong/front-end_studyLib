@@ -79,9 +79,9 @@
 
       + react中的事件：时间名要camel，函数不加(),表达式放{}中： onClick = {conl
 
-    + [***强烈注意***](C:\Users\张慧龙\Desktop\react学习\image\强烈注意.png)
+    + [***强烈注意***](\image\强烈注意.png)
 
-      <img src="C:\Users\张慧龙\Desktop\react学习\image\强烈注意.png"  />
+      <img src="\image\强烈注意.png"  />
 
 
 
