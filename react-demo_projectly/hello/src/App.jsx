@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 import VModal from "./pages/vModalAchieve";
 import cwAchieve from "./pages/computedAndWatch";
 import FilterableProductTable from "./pages/FilterableProductTable/FilterableProductTable";
+import testArea from './pages/testArea'
 import { Button } from "antd";
 // import { styles } from "./index.css";
 
@@ -24,6 +25,7 @@ export default function App() {
         <NavLink to="/vMadal">to VModal</NavLink>
         <NavLink to="/cwAchieve">to cwAchieve</NavLink>
         <NavLink to="/filterableProductTable">to filterableProductTable</NavLink>
+        <NavLink to="/testArea">to testArea</NavLink>
 
       </div>
 
@@ -36,6 +38,7 @@ export default function App() {
         <Route path="/vMadal" component={VModal}></Route>
         <Route path="/cwAchieve" component={cwAchieve}></Route>
         <Route path="/filterableProductTable" component={FilterableProductTable}></Route>
+        <Route path="/testArea" component={testArea}></Route>
 
         <Redirect to="/home"></Redirect>
       </Switch>

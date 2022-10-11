@@ -1,21 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="../js/react.development.js"></script>
-    <script src="../js/react-dom.development.js"></script>
-    <script src="../js/babel.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/babel.min.js"></script>
     <!-- 一个用于props验证规则的库 -->
-    <script src="../js/prop-types.js"></script>
-</head>
-<body>
-    <div id="react"></div>  
+    <script src="./js/prop-types.js"></script>
+  </head>
+  <body>
+    <div id="react"></div>
     <script type="text/babel">
-        const react = document.querySelector('#react')
-        ReactDOM.render(<FuncComp name="张慧龙"/>, react)
+      const react = document.querySelector("#react");
+      const themes = {
+        light: {
+          foreground: "#000000",
+          background: "#eeeeee",
+        },
+        dark: {
+          foreground: "#ffffff",
+          background: "#222222",
+        },
+      };
+
+      const ThemeContext = React.createContext(themes.light);
+
+      function App() {
+        return (
+          <ThemeContext.Provider value={themes.dark}>
+            <Toolbar />
+          </ThemeContext.Provider>
+        );
+      }
+
+      function Toolbar(props) {
+        return (
+          <div>
+            <ThemedButton />
+          </div>
+        );
+      }
+
+      function ThemedButton() {
+        const theme = React.useContext(ThemeContext);
+        return (
+          <button
+            style={{ background: theme.background, color: theme.foreground }}
+          >
+            I am styled by theme context!
+          </button>
+        );
+      }
+      ReactDOM.render(<App />, react);
     </script>
-</body>
+  </body>
 </html>
