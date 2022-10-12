@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState, useMemo } from "react";
+import React, { FC, useState, useMemo } from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import ProductTable from "./ProductTable/ProductTable";
 // import StudnetMes from "./context";
@@ -52,16 +52,16 @@ const FilterableProductTable: FC<any> = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [showData, setShowData] = useState<tableDataTemp[]>(resData);
 
-  const compSearchData = useMemo(() => {
-    const filterData = resData.filter((item) => {
-      if (ifStock) {
-        return item.name.search(searchText) !== -1 && item.stocked === true;
-      } else {
-        return item.name.search(searchText) !== -1;
-      }
-    });
-    setShowData(filterData);
-  }, [searchText, ifStock]);
+  // const compSearchData = useMemo(() => {
+  //   const filterData = resData.filter((item) => {
+  //     if (ifStock) {
+  //       return item.name.search(searchText) !== -1 && item.stocked === true;
+  //     } else {
+  //       return item.name.search(searchText) !== -1;
+  //     }
+  //   });
+  //   setShowData(filterData);
+  // }, [searchText, ifStock]);
 
   // const compIfStock = useMemo(() => {
   //   let filterData = showData;

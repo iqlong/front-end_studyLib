@@ -6,11 +6,13 @@ import {StudnetMes} from "../FilterableProductTable";
 const ProductTable: FC<any> = (props) => {
     const { tableData } = props;
     const [ formateData, setFormateData ] = useState<object>([])
-    const [ getContent, setContent] = useState<ReactElement[]>([])
+    // const [ getContent, setContent] = useState<ReactElement[]>([])
     const mes = useContext(StudnetMes)
 
+    const [stu, setStu] = useState({name: '小红', age: 12})
+
     useEffect(() => {
-        let collectMap = new Map()
+        const collectMap = new Map()
         tableData.forEach((item) => {
             const key = item.category;
             const itemObj = {
@@ -27,7 +29,7 @@ const ProductTable: FC<any> = (props) => {
     }, [tableData])
 
     function showData(map_data) {
-        let content: ReactElement[] = [];
+        const content: ReactElement[] = [];
         map_data.forEach((item, key) => {
             const categoryRow = <ProductCategoryRow text = {key} key={key} />
             content.push(categoryRow)
@@ -45,6 +47,17 @@ const ProductTable: FC<any> = (props) => {
         <div>
             <h3>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Price</h3>
             { showData(formateData) }
+            <button onClick={() => {
+                setStu({...stu, name: '小明'})
+
+                // 没有效果的修改
+                // stu.name = '小明'
+                // setStu(stu)
+            }}>修改学生的信息</button>
+            <ul>
+                <li>{stu.name}</li>
+                <li>{stu.age}</li>
+            </ul>
             <ul>
                 <li>{mes.name}</li>
                 <li>{mes.age}</li>
