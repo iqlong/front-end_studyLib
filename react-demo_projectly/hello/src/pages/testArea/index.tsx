@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const TextArea: React.FC<any> = (props) => {
-  let num = 0;
+const TextArea: React.FC<any> = () => {
+  const num = useRef(0);
   useEffect(() => {
     // 初次渲染的时候不管是不是 reactive num 都会effect，之后就不会了
     console.log("effect for num:", num);
@@ -32,18 +32,20 @@ const TextArea: React.FC<any> = (props) => {
     <>
       <button
         onClick={() => {
-          num++;
-          console.log(num);
+          num.current++;
+          console.log(num.current);
         }}
       >
-        const num ++
+        const num.current ++
       </button>
+      &nbsp;&nbsp;  the num is: {num.current}
+      <hr/>
       <button onClick={() => {
         setSite((preSite) => {
           return {...preSite, x: 18}
         })
       }}>set Site</button>
-      {site.x}
+      {site.x} 
     </>
   );
 };

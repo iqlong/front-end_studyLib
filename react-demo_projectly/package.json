@@ -27,6 +27,13 @@
     "customize-cra": "^1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "eslint": "5.12.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-flowtype": "2.50.1",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.12.4",
     "file-loader": "2.0.0",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
@@ -131,11 +138,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.40.0",
-    "@typescript-eslint/parser": "^5.40.0",
-    "eslint": "^8.25.0",
-    "eslint-plugin-react": "^7.31.10"
   }
 }
