@@ -240,44 +240,6 @@
 
 
 
-## react-router 的使用
-
-### link标签的使用
-
-> 1. NavLink 可以利用 activeClassName 来指定激活添加的类名
-> 2. 任何标签都可以通过 children 属性指定标签体的body的内容
-> 3. 封装一下 **Link** 可以通过使用react特殊的用于对象解构的操作符   {...obj}
->    + 其中 **{}** 表示的是其中包裹这运算符
-
-### 一次思考
-
-> 1. react可以不用路由的映射关系实现router效果   ===>   利用 Route 的path属性
-> 2. Link / NavLink 标签和 Route / Switch   都需要被 BrowserRouter / HashRouter 所包裹
-> 3. 需要学习的东西
->    + 多级路由
->    + 动态参数匹配
->    + 参数的传递和获取
->    + 命名视图
->    + redirect 放在route组件的最后
-
-### 巩固项目
-
-> + 自己封装一个NavLink标签
-> + 实现嵌套路由
->   + react中不适用路由表 / 命名
->   + 总感觉路由信息写的太分散了，要找的时候不好找
->   + 普通组件卸载 component中 路由组件写在 pages 中
-
-
-
-### 参数的传递
-
-> + params参数： this.props.match.params
-> + search参数 ：  this.props.loaction.search             =>> 需要使用    qs.parse() 解析一下
-> + state参数：      to中传入的是一个对象： path   state   
->   + this.props.location.state
-> + 利用 withRouter 将一般组件变为路由组件
-
 ####  视频播放结束后的几种状态和跳转
 
 1. ***立即开始***				examState = 2 测评中
@@ -369,7 +331,55 @@
 
 
 
+# React-router-dom
 
+## react-router 的使用
+
+### link标签的使用
+
+> 1. NavLink 可以利用 activeClassName 来指定激活添加的类名
+> 2. 任何标签都可以通过 children 属性指定标签体的body的内容
+> 3. 封装一下 **Link** 可以通过使用react特殊的用于对象解构的操作符   {...obj}
+>    + 其中 **{}** 表示的是其中包裹这运算符
+
+### 一次思考
+
+> 1. react可以不用路由的映射关系实现router效果   ===>   利用 Route 的path属性
+> 2. Link / NavLink 标签和 Route / Switch   都需要被 BrowserRouter / HashRouter 所包裹
+> 3. 需要学习的东西
+>    + 多级路由
+>    + 动态参数匹配
+>    + 参数的传递和获取
+>    + 命名视图
+>    + redirect 放在route组件的最后
+
+### 巩固项目
+
+> + 自己封装一个NavLink标签
+> + 实现嵌套路由
+>   + react中不适用路由表 / 命名
+>   + 总感觉路由信息写的太分散了，要找的时候不好找
+>   + 普通组件卸载 component中 路由组件写在 pages 中
+
+
+
+### 参数的传递
+
+> + params参数： this.props.match.params
+> + search参数 ：  this.props.loaction.search             =>> 需要使用    qs.parse() 解析一下
+> + state参数：      to中传入的是一个对象： path   state   
+>   + this.props.location.state
+> + 利用 withRouter 将一般组件变为路由组件
+
+```
+1. Link 和 NavLink
+2. BrowserRouter 和 Route
+	+ 组件可以写在Route.children中，也可在Route.component中
+	+ 外层可以包括BrowserRouter也可以不包裹
+3. Nested Routing
+	+ useRouteMatch
+	+ useParams
+```
 
 
 

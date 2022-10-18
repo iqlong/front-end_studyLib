@@ -8,7 +8,10 @@ declare namespace NodeJS {
     PUBLIC_URL: string;
   }
 }
-
+declare module '*.scss' {
+  const content: Record<string, string>;
+  export default content;
+}
 declare module '*.bmp' {
   const src: string;
   export default src;

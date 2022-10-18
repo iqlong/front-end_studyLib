@@ -1,12 +1,10 @@
 import React from "react";
-import { NavLink, Route, Switch, Redirect } from "react-router-dom";
+import { NavLink, Route, Switch, Redirect, Link } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import VModal from "./pages/vModalAchieve";
 import cwAchieve from "./pages/computedAndWatch";
 import FilterableProductTable from "./pages/FilterableProductTable/FilterableProductTable";
 import testArea from './pages/testArea'
-import { Button } from "antd";
-// import { styles } from "./index.css";
  
 export default function App() {
   return (
@@ -18,9 +16,9 @@ export default function App() {
           justifyContent: "space-around",
         }}
       >
-        <NavLink to="/home">to Home</NavLink>
+        <Link to="/home">to Home</Link>
         <NavLink to="/vMadal">to VModal</NavLink>
-        <NavLink to="/cwAchieve">to cwAchieve</NavLink>
+        <NavLink to="/reactRouterDom">to reactRouterDom</NavLink>
         <NavLink to="/filterableProductTable">to filterableProductTable</NavLink>
         <NavLink to="/testArea">to testArea</NavLink>
 
@@ -32,10 +30,10 @@ export default function App() {
       <Switch>
         <Route path="/home" component={Home}></Route>
         <Route path="/vMadal" component={VModal}></Route>
-        <Route path="/cwAchieve" component={cwAchieve}></Route>
+        <Route path="/reactRouterDom" component={cwAchieve}></Route>
         <Route path="/filterableProductTable" component={FilterableProductTable}></Route>
         <Route path="/testArea" component={testArea}></Route>
-
+        {/* 若是都没有匹配，那就跳转到 home 页面 */}
         <Redirect to="/home"></Redirect>
       </Switch>
     </div>
