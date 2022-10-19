@@ -1,0 +1,80 @@
+// var area
+$btn-primary-color: #1890ff;
+$btn-primary-color-hover: #40a9ff;
+
+.antd_button {
+    padding: 4px 15px;
+    background: #fff;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    user-select: none;
+    height: 32px;
+    padding: 4px 15px;
+    font-size: 14px;
+    border-radius: 2px;
+    position: relative;
+    display: inline-block;
+}
+
+.danger.antd_button {
+    // 多一个 class 加权重，覆盖默认的样式
+    color: #fff;
+    border-color: #ff4d4f;
+    background: #ff4d4f;
+}
+
+// 规定type的样式 "primary" | "ghost" | "dashed" | "link" | "text" | "default";
+.primary.antd_button {
+    color: #fff;
+    border-color: $btn-primary-color;
+    background: $btn-primary-color;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.ghost.antd_button {
+    background: transparent;
+}
+
+.dashed.antd_button {
+    color: rgba(0, 0, 0, 0.85);
+    border-color: #d9d9d9;
+    background: #fff;
+    border-style: dashed;
+}
+// btn 的聚焦时候的动态效果
+.antd_button.dashed:focus,.dashed:hover {
+    color: $btn-primary-color-hover;
+    border-color: $btn-primary-color-hover;
+    background: #fff;
+}
+
+.primary.antd_button {
+    color: #fff;
+    border-color: $btn-primary-color;
+    background: $btn-primary-color;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.primary.antd_button {
+    color: #fff;
+    border-color: $btn-primary-color;
+    background: $btn-primary-color;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.primary.antd_button {
+    color: #fff;
+    border-color: $btn-primary-color;
+    background: $btn-primary-color;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}

@@ -27,14 +27,17 @@
     "customize-cra": "^1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "eslint-config-react-app": "^7.0.1",
     "file-loader": "2.0.0",
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
+    "husky": "^8.0.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
+    "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
@@ -43,13 +46,16 @@
     "postcss-modules-values": "^4.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
+    "prettier": "^2.7.1",
     "querystring": "^0.2.1",
     "react": "^18.2.0",
+    "react-app": "^1.1.2",
     "react-app-polyfill": "^0.2.2",
     "react-app-rewired": "^2.2.1",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "5",
+    "react-scripts": "^5.0.1",
     "resolve": "1.10.0",
     "sass": "^1.55.0",
     "sass-loader": "7.1.0",
@@ -66,10 +72,9 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "test": "react-app-rewired test",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -133,10 +138,47 @@
       "react-app"
     ]
   },
+  "eslintConfig": {
+    
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/node-logger": "^6.5.12",
+    "@storybook/preset-create-react-app": "^4.1.2",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
     "@typescript-eslint/eslint-plugin": "^5.40.0",
     "@typescript-eslint/parser": "^5.40.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.25.0",
-    "eslint-plugin-react": "^7.31.10"
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-storybook": "^0.6.4",
+    "prop-types": "^15.8.1"
   }
 }

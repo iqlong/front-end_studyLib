@@ -2,7 +2,7 @@ import React, { FC, useState, useMemo } from "react";
 // import './index.scss'
 import Styles from './index.module.scss'
 
-const CwAchieve: FC = () => {
+const cwAchieve: FC = () => {
   const [baseData, setBaseData] = useState("西瓜妹妹");
 
   const resData = useMemo(() => {
@@ -45,4 +45,4 @@ const CwAchieve: FC = () => {
   );
 };
 
-export default CwAchieve;
+export default cwAchieve;

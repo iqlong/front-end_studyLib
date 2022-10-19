@@ -1,4 +1,6 @@
+@import '~antd/dist/antd.css';
+@import-normalize;
 .flexWrap {
     display: flex;
     justify-content: space-around;
-}
+} 
