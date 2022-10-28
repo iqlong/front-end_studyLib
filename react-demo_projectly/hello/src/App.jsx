@@ -5,6 +5,7 @@ import VModal from "./pages/vModalAchieve";
 import CwAchieve from "./pages/computedAndWatch";
 import FilterableProductTable from "./pages/FilterableProductTable/FilterableProductTable";
 import antdTestArea from './pages/antd/test.tsx'
+import StoreLib from "./pages/storeLib";
 import './index.css';
  
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         <NavLink to="/reactRouterDom">to reactRouterDom</NavLink>
         <NavLink to="/filterableProductTable">to filterableProductTable</NavLink>
         <NavLink to="/antdTestArea">to antdTestArea</NavLink>
+        <NavLink to="/storeLibTest">to storeLibTest</NavLink>
 
       </div>
 
@@ -34,6 +36,7 @@ export default function App() {
         <Route path="/reactRouterDom" component={CwAchieve}></Route>
         <Route path="/filterableProductTable" component={FilterableProductTable}></Route>
         <Route path="/antdTestArea" component={antdTestArea}></Route>
+        <Route path="/storeLibTest" component={StoreLib}></Route>
         {/* 若是都没有匹配，那就跳转到 home 页面 */}
         <Redirect to="/home"></Redirect>
       </Switch>
